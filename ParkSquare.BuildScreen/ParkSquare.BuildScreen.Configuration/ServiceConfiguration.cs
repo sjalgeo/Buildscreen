@@ -71,11 +71,6 @@ namespace ParkSquare.BuildScreen.Configuration
                 ic.Password = password;
             }
 
-            var errorMessage = CheckValidityOfConfig(ic);
-            if (!string.IsNullOrEmpty(errorMessage))
-            {
-                throw new ArgumentException(errorMessage);
-            }
             list[list.IndexOf(configuration)] = ic;
             WriteToFile(list);
             ConfigurationListChanged();
@@ -107,11 +102,6 @@ namespace ParkSquare.BuildScreen.Configuration
                 if (list.FirstOrDefault(c => String.Equals(c.Uri, ic.Uri, StringComparison.CurrentCultureIgnoreCase)) != null)
                     throw new ArgumentException("Configuration with Uri \"" + ic.Uri + "\" Already exists.");
                 ic.Id = list.Any() ? (list.Max(c => c.Id) + 1) : (0);
-                var errorMessage = CheckValidityOfConfig(ic);
-                if (!string.IsNullOrEmpty(errorMessage))
-                {
-                    throw new ArgumentException(errorMessage);
-                }
                 list.Add(ic);
                 WriteToFile(list);
                 ConfigurationListChanged();
@@ -220,39 +210,6 @@ namespace ParkSquare.BuildScreen.Configuration
                 throw;
             }
 
-        }
-        private static string CheckValidityOfConfig(IServiceConfig config)
-        {
-            try
-            {
-                Uri tempValue;
-                if (!Uri.TryCreate(config.Uri, UriKind.Absolute, out tempValue))
-                {
-                    return "Uri is has a wrong format.";
-                }
-                if (!config.Uri.ToLower().Contains(ConfigurationManager.AppSettings[config.ServiceType + "Regex"]))
-                {
-                    return "Url did not contain a valid domain or service";
-                }
-                if (!CanLogIn(config.Username, config.Password, config.Uri, config.ServiceType).Result)
-                {
-                    return "Could not authenticate, username and/or password are wrong.";
-                }
-            }
-            catch (AggregateException e)
-            {
-                if (e.InnerException is Exception)
-                {
-                    return e.InnerException.Message;
-                }
-                return "DNS could not find server adress";
-            }
-            catch (Exception e)
-            {
-                LogService.WriteError(e);
-                throw;
-            }
-            return null;
         }
         private static async Task<bool> CanLogIn(string username, string password, string uri, string configType)
         {

@@ -10,7 +10,7 @@ namespace ParkSquare.BuildScreen.DependencyInjection
        
         public void Install(IWindsorContainer container, IConfigurationStore store)
         {
-            container.Register(Classes.FromAssemblyNamed("OrbitOne.BuildScreen")
+            container.Register(Classes.FromAssemblyNamed("ParkSquare.BuildScreen")
                                 .BasedOn<IController>()
                                 .LifestyleTransient());
         }

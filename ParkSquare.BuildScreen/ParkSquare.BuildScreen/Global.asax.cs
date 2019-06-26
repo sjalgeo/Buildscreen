@@ -4,10 +4,10 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using Castle.Windsor;
-using OrbitOne.BuildScreen.Configuration;
-using OrbitOne.BuildScreen.DependencyInjection;
+using ParkSquare.BuildScreen.Configuration;
+using ParkSquare.BuildScreen.DependencyInjection;
 
-namespace OrbitOne.BuildScreen
+namespace ParkSquare.BuildScreen
 {
     // Note: For instructions on enabling IIS6 or IIS7 classic mode, 
     // visit http://go.microsoft.com/?LinkId=9394801
