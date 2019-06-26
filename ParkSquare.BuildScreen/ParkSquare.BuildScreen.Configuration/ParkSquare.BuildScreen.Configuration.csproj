@@ -7,10 +7,11 @@
     <ProjectGuid>{28B2602A-F3AA-47E5-ADB5-A699CC2982CD}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>OrbitOne.BuildScreen.Configuration</RootNamespace>
-    <AssemblyName>OrbitOne.BuildScreen.Configuration</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <RootNamespace>ParkSquare.BuildScreen.Configuration</RootNamespace>
+    <AssemblyName>ParkSquare.BuildScreen.Configuration</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>

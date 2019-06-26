@@ -7,6 +7,7 @@ using System.Web;
 using Newtonsoft.Json;
 using OrbitOne.BuildScreen.Configuration;
 using OrbitOne.BuildScreen.Models;
+using OrbitOne.BuildScreen.RestApiService.Dtos;
 using OrbitOne.BuildScreen.Services;
 
 namespace OrbitOne.BuildScreen.RestApiService

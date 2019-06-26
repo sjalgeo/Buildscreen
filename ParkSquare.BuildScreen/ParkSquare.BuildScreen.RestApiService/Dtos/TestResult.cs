@@ -1,4 +1,4 @@
-﻿namespace OrbitOne.BuildScreen.Models
+﻿namespace OrbitOne.BuildScreen.RestApiService.Dtos
 {
     public class TestResult
     {

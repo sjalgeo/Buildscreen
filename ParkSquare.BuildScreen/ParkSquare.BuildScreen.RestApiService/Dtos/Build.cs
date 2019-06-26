@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace OrbitOne.BuildScreen.Models
+namespace OrbitOne.BuildScreen.RestApiService.Dtos
 {
     public class Build
     {

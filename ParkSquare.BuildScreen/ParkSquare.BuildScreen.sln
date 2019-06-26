@@ -3,12 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.28922.388
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{2C64773B-3426-414B-91EE-D4952ECD8D89}"
-	ProjectSection(SolutionItems) = preProject
-		COPYING.txt = COPYING.txt
-		README.md = README.md
-	EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParkSquare.BuildScreen", "ParkSquare.BuildScreen\ParkSquare.BuildScreen.csproj", "{162F0C57-0D3C-4C85-9FA6-E78EC780365B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParkSquare.BuildScreen.Configuration", "ParkSquare.BuildScreen.Configuration\ParkSquare.BuildScreen.Configuration.csproj", "{28B2602A-F3AA-47E5-ADB5-A699CC2982CD}"
