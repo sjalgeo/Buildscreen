@@ -1,6 +1,6 @@
 ﻿using System.Web.Optimization;
 
-namespace OrbitOne.BuildScreen
+namespace ParkSquare.BuildScreen
 {
     public class BundleConfig
     {

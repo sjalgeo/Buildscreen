@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Web.Mvc;
-using OrbitOne.BuildScreen.Models;
-using OrbitOne.BuildScreen.Services;
+using ParkSquare.BuildScreen.Models;
+using ParkSquare.BuildScreen.Services;
 
-namespace OrbitOne.BuildScreen.Controllers
+namespace ParkSquare.BuildScreen.Controllers
 {
     public class BuildscreenApiController : Controller
     {

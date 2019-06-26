@@ -5,12 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using Newtonsoft.Json;
-using OrbitOne.BuildScreen.Configuration;
-using OrbitOne.BuildScreen.Models;
-using OrbitOne.BuildScreen.RestApiService.Dtos;
-using OrbitOne.BuildScreen.Services;
+using ParkSquare.BuildScreen.Configuration;
+using ParkSquare.BuildScreen.RestApiService.Dtos;
+using ParkSquare.BuildScreen.Services;
 
-namespace OrbitOne.BuildScreen.RestApiService
+namespace ParkSquare.BuildScreen.RestApiService
 {
 
     public class VsoHelperClass : IHelperClass

@@ -3,7 +3,7 @@ using Castle.MicroKernel.Resolvers.SpecializedResolvers;
 using Castle.Windsor;
 using log4net.Config;
 
-namespace OrbitOne.BuildScreen.DependencyInjection
+namespace ParkSquare.BuildScreen.DependencyInjection
 {
    public class Bootstrapper
    {

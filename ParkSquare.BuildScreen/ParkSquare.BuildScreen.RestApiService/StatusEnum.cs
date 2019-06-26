@@ -1,4 +1,4 @@
-namespace OrbitOne.BuildScreen.RestApiService
+namespace ParkSquare.BuildScreen.RestApiService
 {
     public class StatusEnum
     {

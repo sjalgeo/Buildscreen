@@ -1,6 +1,6 @@
 ﻿using System.Web.Http;
 
-namespace OrbitOne.BuildScreen
+namespace ParkSquare.BuildScreen
 {
     public static class WebApiConfig
     {

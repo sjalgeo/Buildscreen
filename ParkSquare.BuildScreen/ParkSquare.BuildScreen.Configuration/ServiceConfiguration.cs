@@ -13,9 +13,9 @@ using System.Threading.Tasks;
 using System.Web;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using OrbitOne.BuildScreen.Services;
+using ParkSquare.BuildScreen.Services;
 
-namespace OrbitOne.BuildScreen.Configuration
+namespace ParkSquare.BuildScreen.Configuration
 {
     public static class ServiceConfiguration
     {

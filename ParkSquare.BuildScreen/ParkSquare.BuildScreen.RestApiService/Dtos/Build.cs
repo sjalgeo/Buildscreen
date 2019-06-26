@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace OrbitOne.BuildScreen.RestApiService.Dtos
+namespace ParkSquare.BuildScreen.RestApiService.Dtos
 {
     public class Build
     {

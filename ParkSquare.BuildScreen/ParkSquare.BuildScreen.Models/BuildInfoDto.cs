@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace OrbitOne.BuildScreen.Models
+namespace ParkSquare.BuildScreen.Models
 {
     public class BuildInfoDto
     {

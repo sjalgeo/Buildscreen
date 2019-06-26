@@ -1,4 +1,4 @@
-﻿namespace OrbitOne.BuildScreen.Configuration
+﻿namespace ParkSquare.BuildScreen.Configuration
 {
     public interface IConfigurationRestService
     {

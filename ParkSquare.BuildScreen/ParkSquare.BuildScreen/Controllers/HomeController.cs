@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
 
-namespace OrbitOne.BuildScreen.Controllers
+namespace ParkSquare.BuildScreen.Controllers
 {
     public class HomeController : Controller
     {

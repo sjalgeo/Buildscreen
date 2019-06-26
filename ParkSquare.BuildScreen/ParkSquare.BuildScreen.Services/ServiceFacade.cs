@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading.Tasks;
-using OrbitOne.BuildScreen.Models;
+using ParkSquare.BuildScreen.Models;
 
-namespace OrbitOne.BuildScreen.Services
+namespace ParkSquare.BuildScreen.Services
 {
     public class ServiceFacade : IServiceFacade
     {

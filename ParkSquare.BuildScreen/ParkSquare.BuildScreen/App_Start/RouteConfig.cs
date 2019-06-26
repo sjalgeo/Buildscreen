@@ -1,7 +1,7 @@
 ﻿using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace OrbitOne.BuildScreen
+namespace ParkSquare.BuildScreen
 {
     public class RouteConfig
     {

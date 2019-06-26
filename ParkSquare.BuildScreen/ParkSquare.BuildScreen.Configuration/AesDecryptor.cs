@@ -4,7 +4,7 @@ using System.IO;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace OrbitOne.BuildScreen.Configuration
+namespace ParkSquare.BuildScreen.Configuration
 {
     public class AesDecryptor
     {

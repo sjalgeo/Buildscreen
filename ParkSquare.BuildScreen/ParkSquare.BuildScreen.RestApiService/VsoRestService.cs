@@ -4,12 +4,12 @@ using System.Data;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
-using OrbitOne.BuildScreen.Configuration;
-using OrbitOne.BuildScreen.Models;
-using OrbitOne.BuildScreen.RestApiService.Dtos;
-using OrbitOne.BuildScreen.Services;
+using ParkSquare.BuildScreen.Configuration;
+using ParkSquare.BuildScreen.Models;
+using ParkSquare.BuildScreen.RestApiService.Dtos;
+using ParkSquare.BuildScreen.Services;
 
-namespace OrbitOne.BuildScreen.RestApiService
+namespace ParkSquare.BuildScreen.RestApiService
 {
     public class VsoRestService : IService
     {

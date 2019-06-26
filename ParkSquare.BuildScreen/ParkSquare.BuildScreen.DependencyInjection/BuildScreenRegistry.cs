@@ -2,11 +2,11 @@
 using Castle.MicroKernel.Registration;
 using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;
-using OrbitOne.BuildScreen.Configuration;
-using OrbitOne.BuildScreen.RestApiService;
-using OrbitOne.BuildScreen.Services;
+using ParkSquare.BuildScreen.Configuration;
+using ParkSquare.BuildScreen.RestApiService;
+using ParkSquare.BuildScreen.Services;
 
-namespace OrbitOne.BuildScreen.DependencyInjection
+namespace ParkSquare.BuildScreen.DependencyInjection
 {
     public class BuildScreenRegistry : IWindsorInstaller
     {

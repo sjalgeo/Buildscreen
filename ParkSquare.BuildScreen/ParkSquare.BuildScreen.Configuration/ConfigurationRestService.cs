@@ -1,6 +1,6 @@
 ﻿using System.Configuration;
 
-namespace OrbitOne.BuildScreen.Configuration
+namespace ParkSquare.BuildScreen.Configuration
 {
     public class ConfigurationRestService : ConfigurationSection, IConfigurationRestService
     {

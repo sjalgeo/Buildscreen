@@ -1,7 +1,7 @@
 ﻿using System;
 using log4net;
 
-namespace OrbitOne.BuildScreen.Services
+namespace ParkSquare.BuildScreen.Services
 {
     public class LogService
     {

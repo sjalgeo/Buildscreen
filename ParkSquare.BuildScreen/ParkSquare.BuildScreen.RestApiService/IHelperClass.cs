@@ -1,7 +1,7 @@
 using System;
 using System.Threading.Tasks;
 
-namespace OrbitOne.BuildScreen.RestApiService
+namespace ParkSquare.BuildScreen.RestApiService
 {
     public interface IHelperClass
     {

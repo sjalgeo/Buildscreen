@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using OrbitOne.BuildScreen.Configuration;
-using OrbitOne.BuildScreen.Services;
+using ParkSquare.BuildScreen.Configuration;
+using ParkSquare.BuildScreen.Services;
 
-namespace OrbitOne.BuildScreen.Controllers
+namespace ParkSquare.BuildScreen.Controllers
 {
     public class ConfigurationController : ApiController
     {

@@ -1,7 +1,7 @@
 using System.Collections.Generic;
-using OrbitOne.BuildScreen.Models;
+using ParkSquare.BuildScreen.Models;
 
-namespace OrbitOne.BuildScreen.Services
+namespace ParkSquare.BuildScreen.Services
 {
     public interface IService
     {
