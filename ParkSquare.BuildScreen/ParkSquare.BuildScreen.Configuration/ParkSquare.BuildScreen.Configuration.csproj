@@ -31,9 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.TeamFoundation.Client, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
-    <Reference Include="Microsoft.TeamFoundation.Common, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
-    <Reference Include="Microsoft.VisualStudio.Services.Common, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.TeamFoundation.Client">
+      <HintPath>..\ParkSquare.BuildScreen\bin\Microsoft.TeamFoundation.Client.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -60,9 +60,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\OrbitOne.BuildScreen.Services\OrbitOne.BuildScreen.Services.csproj">
-      <Project>{0B712711-DD70-43E8-AE87-92CE662B97B5}</Project>
-      <Name>OrbitOne.BuildScreen.Services</Name>
+    <ProjectReference Include="..\ParkSquare.BuildScreen.Services\ParkSquare.BuildScreen.Services.csproj">
+      <Project>{0b712711-dd70-43e8-ae87-92ce662b97b5}</Project>
+      <Name>ParkSquare.BuildScreen.Services</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -11,8 +11,6 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
-using Microsoft.TeamFoundation;
-using Microsoft.TeamFoundation.Client;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using OrbitOne.BuildScreen.Services;
@@ -276,17 +274,7 @@ namespace OrbitOne.BuildScreen.Configuration
             // TFS check
             else if (configType == "TFS")
             {
-                var credentials = new TfsClientCredentials(new WindowsCredential(new NetworkCredential(username, password)));
-                var server = new TfsConfigurationServer(new Uri(uri), credentials);
-                try
-                {
-                    server.EnsureAuthenticated();
-                }
-                catch (TeamFoundationServerUnauthorizedException e)
-                {
-                    return false;
-                }
-                response = server.HasAuthenticated;
+                throw new NotImplementedException("No longer supported");
             }
             return response;
         }

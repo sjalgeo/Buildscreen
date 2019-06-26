@@ -1,10 +1,10 @@
-﻿using Castle.MicroKernel.Registration;
+﻿using System;
+using Castle.MicroKernel.Registration;
 using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;
 using OrbitOne.BuildScreen.Configuration;
 using OrbitOne.BuildScreen.RestApiService;
 using OrbitOne.BuildScreen.Services;
-using OrbitOne.BuildScreen.Services.Tfs;
 
 namespace OrbitOne.BuildScreen.DependencyInjection
 {
@@ -33,13 +33,7 @@ namespace OrbitOne.BuildScreen.DependencyInjection
                             Component.For<IService>().ImplementedBy<VsoRestService>().DependsOn(Dependency.OnValue<IHelperClass>(instanceVso)).Named("VsoRestService"+i));
                         break;
                     case "TFS":
-                        container.Register(
-                            Component.For<ITfsHelperClass>()
-                                .ImplementedBy<TfsHelperClass>()
-                                .DependsOn(Dependency.OnValue<IServiceConfig>(config)).Named("HelperClass" + i));
-                        var instanceTfs = container.Resolve<ITfsHelperClass>("HelperClass" + i);
-                        container.Register(
-                            Component.For<IService>().ImplementedBy<TfsService>().DependsOn(Dependency.OnValue<IHelperClass>(instanceTfs)).Named("VsoRestService"+i));
+                        throw new NotImplementedException("No longer supported");
                         break;
                 }
             }

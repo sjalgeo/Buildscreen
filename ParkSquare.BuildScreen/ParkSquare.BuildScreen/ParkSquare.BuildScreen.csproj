@@ -27,6 +27,7 @@
     </UpgradeBackupLocation>
     <OldToolsVersion>12.0</OldToolsVersion>
     <UseGlobalApplicationHostFile />
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -305,7 +306,6 @@
     <None Include="Properties\PublishProfiles\Buildscreen - Azure test.pubxml" />
     <None Include="Properties\PublishProfiles\BuildScreen File System.pubxml" />
     <None Include="Properties\PublishProfiles\LiveSites.pubxml" />
-    <None Include="readme.txt" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Scripts\angular.min.js.map" />
     <Content Include="Scripts\angular-animate.min.js.map" />
@@ -317,29 +317,21 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\OrbitOne.BuildScreen.Configuration\OrbitOne.BuildScreen.Configuration.csproj">
-      <Project>{28B2602A-F3AA-47E5-ADB5-A699CC2982CD}</Project>
-      <Name>OrbitOne.BuildScreen.Configuration</Name>
+    <ProjectReference Include="..\ParkSquare.BuildScreen.Configuration\ParkSquare.BuildScreen.Configuration.csproj">
+      <Project>{28b2602a-f3aa-47e5-adb5-a699cc2982cd}</Project>
+      <Name>ParkSquare.BuildScreen.Configuration</Name>
     </ProjectReference>
-    <ProjectReference Include="..\OrbitOne.BuildScreen.DependencyInjection\OrbitOne.BuildScreen.DependencyInjection.csproj">
+    <ProjectReference Include="..\ParkSquare.BuildScreen.DependencyInjection\ParkSquare.BuildScreen.DependencyInjection.csproj">
       <Project>{c4447533-d8a9-4bdd-9f19-75fe8a848ff7}</Project>
-      <Name>OrbitOne.BuildScreen.DependencyInjection</Name>
+      <Name>ParkSquare.BuildScreen.DependencyInjection</Name>
     </ProjectReference>
-    <ProjectReference Include="..\OrbitOne.BuildScreen.Models\OrbitOne.BuildScreen.Models.csproj">
-      <Project>{0086B2C2-E19B-4408-B1DF-FC45CB137938}</Project>
-      <Name>OrbitOne.BuildScreen.Models</Name>
+    <ProjectReference Include="..\ParkSquare.BuildScreen.Models\ParkSquare.BuildScreen.Models.csproj">
+      <Project>{0086b2c2-e19b-4408-b1df-fc45cb137938}</Project>
+      <Name>ParkSquare.BuildScreen.Models</Name>
     </ProjectReference>
-    <ProjectReference Include="..\OrbitOne.BuildScreen.RestApiService\OrbitOne.BuildScreen.Services.Vso.csproj">
-      <Project>{B2044920-AD64-4476-A57D-59A4D45E0507}</Project>
-      <Name>OrbitOne.BuildScreen.Services.Vso</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\OrbitOne.BuildScreen.Services.Tfs\OrbitOne.BuildScreen.Services.Tfs.csproj">
-      <Project>{A7453245-804D-4DE8-95C0-0D2D6641A3C2}</Project>
-      <Name>OrbitOne.BuildScreen.Services.Tfs</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\OrbitOne.BuildScreen.Services\OrbitOne.BuildScreen.Services.csproj">
-      <Project>{0B712711-DD70-43E8-AE87-92CE662B97B5}</Project>
-      <Name>OrbitOne.BuildScreen.Services</Name>
+    <ProjectReference Include="..\ParkSquare.BuildScreen.Services\ParkSquare.BuildScreen.Services.csproj">
+      <Project>{0b712711-dd70-43e8-ae87-92ce662b97b5}</Project>
+      <Name>ParkSquare.BuildScreen.Services</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
