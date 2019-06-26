@@ -1,5 +1,7 @@
-Park Square Consulting Buildscreen
-==================================
+![alt tag](https://www.parksq.co.uk/images/logo-nav.png)
+
+Park Square Consulting Azure DevOps Buildscreen
+===============================================
 
 View the latest builds from your Azure DevOps and on-premise Team Foundation Server projects.
 
@@ -27,6 +29,4 @@ This program is free software: you can redistribute it and/or modify it under th
 
 This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
-
-![alt tag](https://www.parksq.co.uk/images/logo-nav.png)
 Check out our website and other free C# code. https://www.parksq.co.uk 
