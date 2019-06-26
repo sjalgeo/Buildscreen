@@ -1,24 +1,12 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28922.388
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{2C64773B-3426-414B-91EE-D4952ECD8D89}"
 	ProjectSection(SolutionItems) = preProject
 		COPYING.txt = COPYING.txt
-		Local.testsettings = Local.testsettings
 		README.md = README.md
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Assemblies", "Assemblies", "{B4F4D463-B20C-45CE-AE07-97D4A00FFE07}"
-	ProjectSection(SolutionItems) = preProject
-		Assemblies\Microsoft.TeamFoundation.Build.Client.dll = Assemblies\Microsoft.TeamFoundation.Build.Client.dll
-		Assemblies\Microsoft.TeamFoundation.Client.dll = Assemblies\Microsoft.TeamFoundation.Client.dll
-		Assemblies\Microsoft.TeamFoundation.Common.dll = Assemblies\Microsoft.TeamFoundation.Common.dll
-		Assemblies\Microsoft.TeamFoundation.TestManagement.Client.dll = Assemblies\Microsoft.TeamFoundation.TestManagement.Client.dll
-		Assemblies\Microsoft.TeamFoundation.WorkItemTracking.Client.dll = Assemblies\Microsoft.TeamFoundation.WorkItemTracking.Client.dll
-		Assemblies\Microsoft.VisualStudio.Services.Client.dll = Assemblies\Microsoft.VisualStudio.Services.Client.dll
-		Assemblies\Microsoft.VisualStudio.Services.Common.dll = Assemblies\Microsoft.VisualStudio.Services.Common.dll
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrbitOne.BuildScreen", "OrbitOne.BuildScreen\OrbitOne.BuildScreen.csproj", "{162F0C57-0D3C-4C85-9FA6-E78EC780365B}"
@@ -36,8 +24,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrbitOne.BuildScreen.Depend
 	ProjectSection(ProjectDependencies) = postProject
 		{A7453245-804D-4DE8-95C0-0D2D6641A3C2} = {A7453245-804D-4DE8-95C0-0D2D6641A3C2}
 	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrbitOne.Buildscreen.LoadTest", "OrbitOne.Buildscreen.LoadTest\OrbitOne.Buildscreen.LoadTest.csproj", "{16D95D6A-3FC4-4894-9261-F600D2A4C94D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrbitOne.BuildScreen.Services.Tfs", "OrbitOne.BuildScreen.Services.Tfs\OrbitOne.BuildScreen.Services.Tfs.csproj", "{A7453245-804D-4DE8-95C0-0D2D6641A3C2}"
 EndProject
@@ -69,10 +55,6 @@ Global
 		{C4447533-D8A9-4BDD-9F19-75FE8A848FF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C4447533-D8A9-4BDD-9F19-75FE8A848FF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C4447533-D8A9-4BDD-9F19-75FE8A848FF7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{16D95D6A-3FC4-4894-9261-F600D2A4C94D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{16D95D6A-3FC4-4894-9261-F600D2A4C94D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{16D95D6A-3FC4-4894-9261-F600D2A4C94D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{16D95D6A-3FC4-4894-9261-F600D2A4C94D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A7453245-804D-4DE8-95C0-0D2D6641A3C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A7453245-804D-4DE8-95C0-0D2D6641A3C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A7453245-804D-4DE8-95C0-0D2D6641A3C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -84,5 +66,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1E669561-0EE6-4810-B54C-C7E671CE469D}
 	EndGlobalSection
 EndGlobal
