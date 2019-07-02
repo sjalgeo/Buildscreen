@@ -229,10 +229,6 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\icons.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Images\avatar.png" />
-    <Content Include="Images\gplaypatternDark.png" />
-    <Content Include="Images\Orbit_one_circle.png" />
-    <Content Include="Images\unknownuser.png" />
     <Content Include="Scripts\aes.js" />
     <Content Include="Scripts\angular-animate.js" />
     <Content Include="Scripts\angular-animate.min.js" />
@@ -247,15 +243,9 @@
     <Content Include="Scripts\angular.min.js" />
     <Content Include="Scripts\App\BuildScreenApp.js" />
     <Content Include="Scripts\App\Controllers\BuildScreenController.js" />
-    <Content Include="Scripts\App\Directives\BuildingAnimationDirective.js" />
-    <Content Include="Scripts\App\Directives\InitialsDirective.js" />
     <Content Include="Scripts\App\Directives\NoAvatarDirective.js" />
-    <Content Include="Scripts\App\Directives\ProgressDirective.js" />
     <Content Include="Scripts\App\Directives\TimeSinceDirective.js" />
     <Content Include="Scripts\App\Filters\TitleFilter.js" />
-    <Content Include="Scripts\App\Templates\ConfirmModal.html" />
-    <Content Include="Scripts\App\Templates\InfoModal.html" />
-    <Content Include="Scripts\App\Templates\FilterModalTemplate.html" />
     <Content Include="Scripts\moment-with-locales.js" />
     <Content Include="Scripts\moment-with-locales.min.js" />
     <Content Include="Scripts\moment.js" />
@@ -266,12 +256,7 @@
     <Content Include="Scripts\ng-tags-input.min.js" />
     <Content Include="Scripts\ngDialog.min.js" />
     <Content Include="Scripts\packery-mode.pkgd.js" />
-    <Content Include="Scripts\App\Services\ConfigurationCheckerService.js" />
-    <Content Include="Scripts\App\Services\ConfigurationService.js" />
-    <Content Include="Scripts\App\Templates\BuildingAnimationTemplate.html" />
-    <Content Include="Scripts\App\Templates\ProgressDirectiveTemplate.html" />
     <Content Include="Scripts\App\Views\Buildscreen.html" />
-    <Content Include="Scripts\App\Views\Configuration.html" />
     <Content Include="Scripts\App\Services\SearchService.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -312,6 +297,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Images\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ParkSquare.BuildScreen.Configuration\ParkSquare.BuildScreen.Configuration.csproj">

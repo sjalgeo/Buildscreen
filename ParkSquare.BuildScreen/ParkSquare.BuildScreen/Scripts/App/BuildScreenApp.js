@@ -9,16 +9,7 @@ angular.module("BuildScreenApp", [
         $routeProvider
           .when('/', {
               templateUrl: 'Scripts/App/Views/Buildscreen.html',
-              controller: 'BuildScreenController',
-              resolve: {
-                  emptyConfiguration: function (ConfigurationChecker) {
-                      return ConfigurationChecker.checkIfEmpty();
-                  }
-              }
-          })
-            .when('/config', {
-                templateUrl: 'Scripts/App/Views/Configuration.html',
-                controller: 'ConfigurationController'
+              controller: 'BuildScreenController'
             })
           .otherwise({
               redirectTo: '/'
