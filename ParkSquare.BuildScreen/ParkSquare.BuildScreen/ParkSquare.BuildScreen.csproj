@@ -202,7 +202,6 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Controllers\ConfigurationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\BuildscreenApiController.cs" />
     <Compile Include="Global.asax.cs">
@@ -227,7 +226,6 @@
     <Content Include="Content\ngDialog-theme-default.css" />
     <Content Include="Content\ngDialog.css" />
     <Content Include="favicon.ico" />
-    <Content Include="fonts\icons.svg" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\aes.js" />
     <Content Include="Scripts\angular-animate.js" />
@@ -279,11 +277,6 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Content\Configuration.scss" />
-    <Content Include="fonts\icons.eot" />
-    <Content Include="fonts\icons.ttf" />
-    <Content Include="fonts\icons.woff" />
-    <Content Include="fonts\QuattrocentoSans-Bold.ttf" />
-    <Content Include="fonts\QuattrocentoSans-Regular.ttf" />
     <None Include="Properties\PublishProfiles\buildscreen - Azure production.pubxml" />
     <None Include="Properties\PublishProfiles\Buildscreen - Azure test.pubxml" />
     <None Include="Properties\PublishProfiles\BuildScreen File System.pubxml" />
