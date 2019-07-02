@@ -247,15 +247,12 @@
     <Content Include="Scripts\angular.min.js" />
     <Content Include="Scripts\App\BuildScreenApp.js" />
     <Content Include="Scripts\App\Controllers\BuildScreenController.js" />
-    <Content Include="Scripts\App\Controllers\ConfigurationController.js" />
-    <Content Include="Scripts\App\Controllers\ModalController.js" />
     <Content Include="Scripts\App\Directives\BuildingAnimationDirective.js" />
     <Content Include="Scripts\App\Directives\InitialsDirective.js" />
     <Content Include="Scripts\App\Directives\NoAvatarDirective.js" />
     <Content Include="Scripts\App\Directives\ProgressDirective.js" />
     <Content Include="Scripts\App\Directives\TimeSinceDirective.js" />
     <Content Include="Scripts\App\Filters\TitleFilter.js" />
-    <Content Include="Scripts\App\Controllers\NavigationController.js" />
     <Content Include="Scripts\App\Templates\ConfirmModal.html" />
     <Content Include="Scripts\App\Templates\InfoModal.html" />
     <Content Include="Scripts\App\Templates\FilterModalTemplate.html" />
