@@ -19,7 +19,7 @@ namespace ParkSquare.BuildScreen.Core
 
             return new BuildInfoDto
             {
-                Id = IntegerGenerator.AnyPositiveInteger().ToString(),
+                Id = IntegerGenerator.AnyIntegerInRange(1, 50).ToString(),
                 RequestedByName = NameGenerator.AnyName(),
                 TeamProject = $"{StringGenerator.SequenceOfAlphas(5)} Project",
                 Status = status.Camelize(),
