@@ -4,7 +4,6 @@
 }
 
 <!DOCTYPE html>
-
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
@@ -15,43 +14,14 @@
     @Html.RenderCssHere()
 </head>
 <body>
-
     <div ng-app="BuildScreenApp">
         <div id="container-for-menu" class="container-for-menu" ng-cloak>
             <div class="pusher">
-                <div ng-controller="NavigationController">
-                    <div id="swipeAnchor" ng-swipe-right="showNavigation()"></div>
-                    <nav class="nav-menu-effect nav-menu">
-                        <ul>
-                            <li class="hover-cursor" ng-click="closeNavigation(); navigateTo('/')"><i class="icon-th"></i>Buildscreen</li>
-                            <li class="hover-cursor" ng-click="closeNavigation(); navigateTo('/config')"><i class="icon-cog"></i>Configuration</li>
-                            <li class="hover-cursor" ng-click="openInfoModal(); closeNavigation()"><i class="icon-info"></i>About</li>
-                            <li ng-show="showSearch()" id="filterCheckbox">
-                                <span class="FilterText"><i class="icon-filter"></i>Advanced</span>
-                                <div class="switch">
-                                    <input type="checkbox" ng-model="search.model.checkValue" ng-change="search.updateAdvancedFilterBool()" id="advancedCheckbox" class="cmn-toggle cmn-toggle-round-flat" />
-                                    <label for="advancedCheckbox"></label>
-                                </div>
-                            </li>
-                            <li ng-hide="search.model.checkValue || !showSearch()">
-                                <div class="menu-input">
-                                    <input type="search" id="search-in-menu" placeholder="&#128269; Search" ng-model="search.searchKey" ng-change="search.updateSimpleFilter()" ng-model-options="{debounce: {'default':500, 'blur':0}}" />
-                                    <label></label>
-                                </div>
-                            </li>
-                            <li class="hover-cursor" ng-hide="!search.model.checkValue || !showSearch()" ng-click="openFilterModal(); closeNavigation()">
-                                <i class="icon-sliders"></i>Filter options
-                            </li>
-                        </ul>
-
-                    </nav>
-                </div>
                 <div class="page-content">
                     <!-- this is the wrapper for the content -->
                     <div class="page-content-inner">
-                        <div id="menuButton" class="icon-circle"><i class="icon-menu"></i></div>
-                            <div ng-view></div>
-                        </div>
+                        <div ng-view></div>
+                    </div>
                 </div><!-- page-content-inner -->
             </div><!-- page-content -->
         </div>

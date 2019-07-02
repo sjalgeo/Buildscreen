@@ -13,7 +13,7 @@
                 Search.builds = newValue;
             });
 
-            var pollingTime = 20000,
+            var pollingTime = 5000,
                 pollCounter = 0,
                 pollTimeout;
 
