@@ -1,16 +1,13 @@
 namespace ParkSquare.BuildScreen.Core
 {
-    public class StatusEnum
+    public enum BuildStatus
     {
-        public enum Statuses
-        {
-            failed,
-            inProgress,
-            none,
-            notStarted,
-            partiallySucceeded,
-            stopped,
-            succeeded
-        }
+        Failed,
+        InProgress,
+        // none,
+        NotStarted,
+        PartiallySucceeded,
+        Stopped,
+        Succeeded
     }
 }
