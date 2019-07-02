@@ -53,14 +53,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BuildInfoDto.cs" />
-    <Compile Include="Dtos\Build.cs" />
-    <Compile Include="Dtos\BuildDefinition.cs" />
-    <Compile Include="Dtos\JsonWrapper.cs" />
-    <Compile Include="Dtos\TeamProject.cs" />
-    <Compile Include="Dtos\TestResult.cs" />
-    <Compile Include="Dtos\Tests.cs" />
-    <Compile Include="IConverter.cs" />
-    <Compile Include="IHelperClass.cs" />
     <Compile Include="IServiceFacade.cs" />
     <Compile Include="IService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
