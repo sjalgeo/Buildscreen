@@ -27,7 +27,7 @@ namespace ParkSquare.BuildScreen.Web.Builds
                 Builddefinition = $"{status} Build",
                 TotalNumberOfTests = IntegerGenerator.AnyIntegerInRange(50, 100),
                 TeamProjectCollection = $"{StringGenerator.SequenceOfAlphas(5)} Collection",
-                LastBuildTime = DateTimeGenerator.AnyDateBefore(DateTime.Now).TimeOfDay,
+                LastBuildTime = DateTimeGenerator.AnyDateTimeBefore(DateTime.Now).TimeOfDay,
                 FinishBuildDateTime = DateTimeGenerator.AnyDateBefore(DateTime.Now),
                 PassedNumberOfTests = IntegerGenerator.AnyIntegerInRange(0, 50),
                 RequestedByPictureUrl = "https://en.gravatar.com/userimage/64673125/c79a1ab9205094f6fc0937557ae3fde8.jpg",
