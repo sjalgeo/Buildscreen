@@ -1,0 +1,59 @@
+﻿<div class="item box" ng-class="[build.status, isStatusImportant(build.status) ? 'wrapper-large' : 'wrapper']">
+    <div ng-if="build.totalNumberOfTests > 0" class="ribbon"><span>{{build.passedNumberOfTests}}/{{build.totalNumberOfTests}}</span></div>
+
+    <span id="dateFilter" data-date="{{build.startBuildDateTime}}" /> <!--This is because of Isotope/Angular compatibility problem-->
+
+    <div class="aspect-content">
+        <p class="item-title" title="{{build.builddefinition}}">{{build.builddefinition | titleFilter:18}}</p>
+        <p class="item-subtitle" title="{{build.teamProject}}">{{build.teamProject | titleFilter:25}}</p>
+        <div class="itemcontent">
+            <p ng-if="build.status !== 'inProgress' && build.status !== 'notStarted'">
+                Built
+                <span title="{{build.finishBuildDateTime | date:'dd-MM-yyyy HH:mm'}}" time-since="{{build.finishBuildDateTime}}"></span>
+            </p>
+            <p ng-if="build.status === 'inProgress'">
+                Started <span title="{{build.startBuildDateTime | date:'dd-MM-yyyy HH:mm'}}" time-since="{{build.startBuildDateTime}}"></span>
+            </p>
+            <p>
+                by <span>{{build.requestedByName | titleFilter:20}}</span>
+            </p>
+        </div>
+        <!--<input type="text" ng-model="build.Status"/>-->
+        <div ng-switch="build.status">
+            <a href="{{build.buildReportUrl}}" target="_blank">
+                <div progress-directive build="build" ng-switch-when="partiallySucceeded">
+                </div>
+                <div ng-switch-when="failed" class="circle">
+                    <div class="builderror-label">
+                        <p>
+                            Build<br/>failed
+                        </p>
+                    </div>
+                </div>
+                <div ng-switch-when="stopped" class="circle">
+                    <div class="builderror-label">
+                        <p>
+                            Build<br/>stopped
+                        </p>
+                    </div>
+                </div>
+                <div ng-switch-when="notStarted" class="circle">
+                    <div class="builderror-label">
+                        <p>
+                            Not<br/>started
+                        </p>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div ng-if="build.Status === 'inProgress'">
+            <a href="{{build.buildReportUrl}}" target="_blank">
+                <div building-animation lastbuildtime="{{build.lastBuildTime}}" starttime="{{build.startBuildDateTime}}"></div>
+            </a>
+        </div>
+        <div class="avatar" ng-if="isStatusImportant(build.status)">
+            <img no-avatar ng-src="{{build.requestedByPictureUrl}}" alt="avatar"/>
+        </div>
+    </div>
+</div>
