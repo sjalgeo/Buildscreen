@@ -485,8 +485,8 @@ body {
 }
 
 .notStarted {
-    background: #04D178;
-    background: linear-gradient(10deg, transparent 55%, #039657 0%) no-repeat border-box, linear-gradient(80deg, #04E383 50%, #04D178 50%)no-repeat border-box;
+    background: grey;
+    background: linear-gradient(10deg, transparent 55%, gray 0%) no-repeat border-box, linear-gradient(80deg, darkgrey 50%, #AFAFAF 50%)no-repeat border-box;
 }
 
 /*----------- ANIMATIONS -----------------*/
