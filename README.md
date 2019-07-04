@@ -10,12 +10,12 @@ This project is a modernized resurrection of the original open source project by
 Supported statuses
 ------------------
 
-* Green: a succeeded build
-* Red: a failed build
-* Purple: a stopped build
-* Cyan: a not yet started build
-* Blue: currently building
-* Yellow: a build with failed tests
+* Grey: queued
+* Blue: in progress
+* Green: succeeded
+* Yellow: partially succeeded (usually due to failing tests)
+* Red: failed
+* Purple: stopped
 
 When a project fails to build successfully, a circle is displayed with additional information. Clicking on this circle will lead to a report of the concerning build. This allows for swift assessment of the problem without losing valuable time.
 
