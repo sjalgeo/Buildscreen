@@ -1,4 +1,4 @@
-namespace ParkSquare.BuildScreen.Web.Builds
+namespace ParkSquare.BuildScreen.Web
 {
     public enum BuildStatus
     {

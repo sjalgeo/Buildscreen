@@ -1,24 +1,32 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Humanizer;
 using ParkSquare.BuildScreen.Web.Models;
 using ParkSquare.Testing.Generators;
 
-namespace ParkSquare.BuildScreen.Web.Builds
+namespace ParkSquare.BuildScreen.Web.Services
 {
-    public class ServiceFacade : IServiceFacade
+    public class AzureDevOpsBuildProvider : IBuildProvider
     {
-        public IReadOnlyCollection<BuildInfoDto> GetBuilds()
+        public Task<IReadOnlyCollection<Build>> GetBuildsAsync()
         {
-            return EnumerableGenerator.CreateSequenceOfRandomSize(30, DummyBuildInfoDto).ToList();
+            return Task.FromResult((IReadOnlyCollection<Build>) EnumerableGenerator
+                .CreateSequenceOfRandomSize(30, DummyBuild).ToList());
         }
 
-        private static BuildInfoDto DummyBuildInfoDto()
+        public Task<IReadOnlyCollection<Build>> GetBuildsAsync(int sinceHours)
+        {
+            return Task.FromResult((IReadOnlyCollection<Build>) EnumerableGenerator
+                .CreateSequenceOfRandomSize(5, DummyBuild).ToList());
+        }
+
+        private static Build DummyBuild()
         {
             var status = EnumGenerator.AnyEnumValue<BuildStatus>().ToString();
 
-            return new BuildInfoDto
+            return new Build
             {
                 Id = IntegerGenerator.AnyIntegerInRange(1, 50).ToString(),
                 RequestedByName = NameGenerator.AnyName(),
@@ -30,7 +38,6 @@ namespace ParkSquare.BuildScreen.Web.Builds
                 LastBuildTime = DateTimeGenerator.AnyDateTimeBefore(DateTime.Now).TimeOfDay,
                 FinishBuildDateTime = DateTimeGenerator.AnyDateBefore(DateTime.Now),
                 PassedNumberOfTests = IntegerGenerator.AnyIntegerInRange(0, 50),
-                RequestedByPictureUrl = "https://en.gravatar.com/userimage/64673125/c79a1ab9205094f6fc0937557ae3fde8.jpg",
                 StartBuildDateTime = DateTimeGenerator.AnyDateTimeBefore(DateTime.Now)
             };
         }

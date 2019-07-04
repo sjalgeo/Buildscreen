@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using ParkSquare.BuildScreen.Web.Builds;
 using ParkSquare.BuildScreen.Web.Models;
+using ParkSquare.BuildScreen.Web.Services;
 
 namespace ParkSquare.BuildScreen.Web.Controllers
 {
@@ -9,23 +11,25 @@ namespace ParkSquare.BuildScreen.Web.Controllers
     [ApiController]
     public class BuildsController : ControllerBase
     {
-        private readonly IServiceFacade _serviceFacade;
+        private readonly IViewAggregator _viewAggregator;
 
-        public BuildsController(IServiceFacade serviceFacade)
+        public BuildsController(IViewAggregator viewAggregator)
         {
-            _serviceFacade = serviceFacade;
+            _viewAggregator = viewAggregator ?? throw new ArgumentNullException(nameof(viewAggregator));
         }
 
         [HttpGet]
-        public ActionResult<IReadOnlyCollection<BuildInfoDto>> Get()
+        public async Task<ActionResult<IReadOnlyCollection<BuildInfoDto>>> GetAsync()
         {
-            return Ok(_serviceFacade.GetBuilds());
+            var builds = await _viewAggregator.GetViewAsync();
+            return Ok(builds);
         }
 
-        [HttpGet("{since}")]
-        public ActionResult<IReadOnlyCollection<BuildInfoDto>> Get(string dateString)
+        [HttpGet("{sinceHoursAgo}")]
+        public async Task<ActionResult<IReadOnlyCollection<BuildInfoDto>>> GetAsync(int sinceHoursAgo)
         {
-            return Ok(_serviceFacade.GetBuilds());
+            var builds = await _viewAggregator.GetViewAsync(sinceHoursAgo);
+            return Ok(builds);
         }
     }
 }
