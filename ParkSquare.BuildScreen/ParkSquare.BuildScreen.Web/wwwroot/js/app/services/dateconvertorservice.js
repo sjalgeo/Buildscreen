@@ -1,7 +1,7 @@
 ﻿angular.module("BuildscreenApp.services").
 factory("DateConvertor", function () {
     var convertToTicks = function (dateString) {
-	    return new Date(dateString).getTime();
+        return new Date(dateString).getTime();
     }
     return {
         convertDatesToTicks: function (builds) {
