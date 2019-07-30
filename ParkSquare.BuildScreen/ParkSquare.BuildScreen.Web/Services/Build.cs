@@ -27,5 +27,7 @@ namespace ParkSquare.BuildScreen.Web.Services
         public int PassedNumberOfTests { get; set; }
 
         public string BuildReportUrl { get; set; } 
+
+        public string RequestedByPictureUrl { get; set; }
     }
 }

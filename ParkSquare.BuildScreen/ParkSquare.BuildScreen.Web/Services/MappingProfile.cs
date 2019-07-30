@@ -7,7 +7,7 @@ namespace ParkSquare.BuildScreen.Web.Services
     {
         public MappingProfile()
         {
-            CreateMap<Build, BuildInfoDto>().ForMember(x => x.RequestedByPictureUrl, opt => opt.Ignore());
+            CreateMap<Build, BuildInfoDto>();
         }
     }
 }

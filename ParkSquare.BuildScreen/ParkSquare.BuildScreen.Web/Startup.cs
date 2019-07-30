@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using ParkSquare.BuildScreen.Web.Services;
+using ParkSquare.BuildScreen.Web.Services.Tfs;
 
 namespace ParkSquare.BuildScreen.Web
 {
@@ -25,6 +26,9 @@ namespace ParkSquare.BuildScreen.Web
 
             services.AddSingleton<IBuildProvider, AzureDevOpsBuildProvider>();
             services.AddSingleton<IViewAggregator, ViewAggregator>();
+
+            services.AddSingleton<IHttpClientFactory, HttpClientFactory>();
+            services.AddSingleton<IBuildDtoConverter, BuildDtoConverter>();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
