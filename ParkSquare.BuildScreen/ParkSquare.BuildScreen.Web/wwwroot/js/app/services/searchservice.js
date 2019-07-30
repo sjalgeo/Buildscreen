@@ -23,9 +23,9 @@
         this.getArrayOfBuildNames = function (query) {
             var returnArray = [];
             for (var i = 0; i < this.builds.length; i++) {
-                if (this.builds[i].Builddefinition.toLowerCase().indexOf(query.toLowerCase()) !== -1) {
-                    if (returnArray.indexOf(this.builds[i].Builddefinition) === -1) {
-                        returnArray.push(this.builds[i].Builddefinition);
+                if (this.builds[i].BuildDefinition.toLowerCase().indexOf(query.toLowerCase()) !== -1) {
+                    if (returnArray.indexOf(this.builds[i].BuildDefinition) === -1) {
+                        returnArray.push(this.builds[i].BuildDefinition);
                     }
                 }
             }

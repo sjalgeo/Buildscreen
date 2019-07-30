@@ -10,7 +10,7 @@ namespace ParkSquare.BuildScreen.Web.Services
 
         public string TeamProject { get; set; }
 
-        public string Builddefinition { get; set; }
+        public string BuildDefinition { get; set; }
 
         public string Status { get; set; }
 
@@ -20,8 +20,6 @@ namespace ParkSquare.BuildScreen.Web.Services
 
         public DateTime FinishBuildDateTime { get; set; }
 
-        public TimeSpan LastBuildTime { get; set; }
-
         public int TotalNumberOfTests { get; set; }
 
         public int PassedNumberOfTests { get; set; }
@@ -29,5 +27,7 @@ namespace ParkSquare.BuildScreen.Web.Services
         public string BuildReportUrl { get; set; } 
 
         public string RequestedByPictureUrl { get; set; }
+
+        public string Branch { get; set; }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace ParkSquare.BuildScreen.Web.Services.Tfs.Dto
+namespace ParkSquare.BuildScreen.Web.Services.AzureDevOps.Dto
 {
     public class GetBuildsResponseDto
     {

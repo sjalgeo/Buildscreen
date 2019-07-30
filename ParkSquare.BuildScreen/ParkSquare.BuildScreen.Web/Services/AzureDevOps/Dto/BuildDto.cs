@@ -1,7 +1,7 @@
 using System;
 using Newtonsoft.Json;
 
-namespace ParkSquare.BuildScreen.Web.Services.Tfs.Dto
+namespace ParkSquare.BuildScreen.Web.Services.AzureDevOps.Dto
 {
     public class BuildDto
     {

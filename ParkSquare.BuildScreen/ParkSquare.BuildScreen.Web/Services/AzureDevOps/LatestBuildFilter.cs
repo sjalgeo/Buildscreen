@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using ParkSquare.BuildScreen.Web.Services.Tfs.Dto;
+using ParkSquare.BuildScreen.Web.Services.AzureDevOps.Dto;
 
-namespace ParkSquare.BuildScreen.Web.Services.Tfs
+namespace ParkSquare.BuildScreen.Web.Services.AzureDevOps
 {
     public class LatestBuildsFilter : ILatestBuildsFilter
     {

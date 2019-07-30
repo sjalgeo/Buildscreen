@@ -1,27 +1,29 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-using ParkSquare.BuildScreen.Web.Services.Tfs.Dto;
+using ParkSquare.BuildScreen.Web.Services.AzureDevOps.Dto;
 
-namespace ParkSquare.BuildScreen.Web.Services.Tfs
+namespace ParkSquare.BuildScreen.Web.Services.AzureDevOps
 {
-    public class AzureDevOpsBuildProvider : IBuildProvider
+    public class BuildProvider : IBuildProvider
     {
         private readonly IHttpClientFactory _httpClientFactory;
         private readonly IBuildDtoConverter _buildDtoConverter;
         private readonly ILatestBuildsFilter _latestBuildsFilter;
+        private readonly ITestResultsProvider _testResultsProvider;
 
-        public AzureDevOpsBuildProvider(
+        public BuildProvider(
             IHttpClientFactory httpClientFactory, 
             IBuildDtoConverter buildDtoConverter,
-            ILatestBuildsFilter buildFilter)
+            ILatestBuildsFilter buildFilter,
+            ITestResultsProvider testResultsProvider)
         {
             _httpClientFactory = httpClientFactory ?? throw new ArgumentNullException(nameof(httpClientFactory));
             _buildDtoConverter = buildDtoConverter ?? throw new ArgumentNullException(nameof(buildDtoConverter));
             _latestBuildsFilter = buildFilter ?? throw new ArgumentNullException(nameof(buildFilter));
+            _testResultsProvider = testResultsProvider ?? throw new ArgumentNullException(nameof(testResultsProvider));
         }
 
         public Task<IReadOnlyCollection<Build>> GetBuildsAsync()
@@ -40,9 +42,9 @@ namespace ParkSquare.BuildScreen.Web.Services.Tfs
             {
                 var dtos = new List<BuildDto>();
 
-                foreach (var path in projects)
+                foreach (var project in projects)
                 {
-                    var requestPath = GetRequestPath(path, since);
+                    var requestPath = GetRequestPath(project, since);
                     var requestUri = new Uri(new Uri("https://dev.azure.com/parksq/"), requestPath);
 
                     var response = await client.GetAsync(requestUri);
@@ -55,7 +57,16 @@ namespace ParkSquare.BuildScreen.Web.Services.Tfs
                 }
 
                 var latestBuilds = _latestBuildsFilter.GetLatestBuilds(dtos);
-                return latestBuilds.Select(_buildDtoConverter.Convert).ToList();
+
+                var converted = new List<Build>();
+
+                foreach (var buildDto in latestBuilds)
+                {
+                    var testResults = await _testResultsProvider.GetTestsForBuildAsync(buildDto.Project.Name, buildDto.Uri);
+                    converted.Add(_buildDtoConverter.Convert(buildDto, testResults));
+                }
+
+                return converted;
             }
         }
 

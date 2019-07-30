@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using ParkSquare.BuildScreen.Web.Services;
-using ParkSquare.BuildScreen.Web.Services.Tfs;
+using ParkSquare.BuildScreen.Web.Services.AzureDevOps;
 
 namespace ParkSquare.BuildScreen.Web
 {
@@ -24,12 +24,13 @@ namespace ParkSquare.BuildScreen.Web
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
-            services.AddSingleton<IBuildProvider, AzureDevOpsBuildProvider>();
+            services.AddSingleton<IBuildProvider, BuildProvider>();
             services.AddSingleton<IViewAggregator, ViewAggregator>();
 
             services.AddSingleton<IHttpClientFactory, HttpClientFactory>();
             services.AddSingleton<IBuildDtoConverter, BuildDtoConverter>();
             services.AddSingleton<ILatestBuildsFilter, LatestBuildsFilter>();
+            services.AddSingleton<ITestResultsProvider, TestResultsProvider>();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
