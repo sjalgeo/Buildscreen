@@ -29,7 +29,7 @@ namespace ParkSquare.BuildScreen.Web.Services.AzureDevOps
                 if (response.IsSuccessStatusCode)
                 {
                     var deserialized = await DeserializeResponseAsync(response);
-                    return CalculateTestResults(deserialized.Value);
+                    return CalculateTestResults(deserialized.Value,  buildUri);
                 }
             }
 
@@ -47,10 +47,11 @@ namespace ParkSquare.BuildScreen.Web.Services.AzureDevOps
             return $"{project}/_apis/test/runs?buildUri={buildUri}&$top=5000&api-version=5.0";
         }
 
-        private static TestResults CalculateTestResults(IReadOnlyCollection<TestRunDto> testResults)
+        private static TestResults CalculateTestResults(IReadOnlyCollection<TestRunDto> testResults, string buildUri)
         {
             return new TestResults
             {
+                BuildUri = buildUri, 
                 TotalTests = testResults.Sum(x => x.TotalTests),
                 PassedTests = testResults.Sum(x => x.PassedTests)
             };

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
@@ -58,12 +59,19 @@ namespace ParkSquare.BuildScreen.Web.Services.AzureDevOps
 
                 var latestBuilds = _latestBuildsFilter.GetLatestBuilds(dtos);
 
-                var converted = new List<Build>();
+                var getTestTasks =
+                    latestBuilds.Select(x =>
+                        _testResultsProvider.GetTestsForBuildAsync(x.Project.Name, x.Uri)).ToList();
 
+                await Task.WhenAll(getTestTasks);
+
+                var testResults = getTestTasks.Select(x => x.Result).ToList();
+
+                var converted = new List<Build>();
                 foreach (var buildDto in latestBuilds)
                 {
-                    var testResults = await _testResultsProvider.GetTestsForBuildAsync(buildDto.Project.Name, buildDto.Uri);
-                    converted.Add(_buildDtoConverter.Convert(buildDto, testResults));
+                    var testsForBuild = testResults.FirstOrDefault(x => x.BuildUri.Equals(buildDto.Uri));
+                    converted.Add(_buildDtoConverter.Convert(buildDto, testsForBuild));
                 }
 
                 return converted;
