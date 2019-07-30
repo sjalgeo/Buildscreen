@@ -17,6 +17,9 @@
             <p>
                 by <span>{{build.requestedByName | titleFilter:20}}</span>
             </p>
+            <p class="branch-name">
+                {{build.branch | titleFilter:30}}
+            </p>
         </div>
         <!--<input type="text" ng-model="build.Status"/>-->
         <div ng-switch="build.status">

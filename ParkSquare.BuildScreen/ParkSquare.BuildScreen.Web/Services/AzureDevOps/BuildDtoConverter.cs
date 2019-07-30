@@ -1,4 +1,5 @@
-﻿using ParkSquare.BuildScreen.Web.Services.AzureDevOps.Dto;
+﻿using System;
+using ParkSquare.BuildScreen.Web.Services.AzureDevOps.Dto;
 
 namespace ParkSquare.BuildScreen.Web.Services.AzureDevOps
 {
@@ -21,9 +22,13 @@ namespace ParkSquare.BuildScreen.Web.Services.AzureDevOps
                 FinishBuildDateTime = buildDto.FinishTime,
                 // RequestedByPictureUrl = "https://dev.azure.com/parksq/parksq/_api/_common/identityImage?id=" + buildDto.RequestedBy.Id,
                 RequestedByPictureUrl = "https://en.gravatar.com/userimage/64673125/c79a1ab9205094f6fc0937557ae3fde8.jpg",
-                Branch = buildDto.SourceBranch
+                Branch = ConvertBranchName(buildDto.SourceBranch)
             };
         }
 
+        private static string ConvertBranchName(string branchName)
+        {
+            return branchName.Replace("refs/", string.Empty, StringComparison.InvariantCultureIgnoreCase);
+        }
     }
 }
