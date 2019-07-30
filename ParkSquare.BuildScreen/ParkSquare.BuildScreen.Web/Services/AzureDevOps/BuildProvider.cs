@@ -14,27 +14,31 @@ namespace ParkSquare.BuildScreen.Web.Services.AzureDevOps
         private readonly IBuildDtoConverter _buildDtoConverter;
         private readonly ILatestBuildsFilter _latestBuildsFilter;
         private readonly ITestResultsProvider _testResultsProvider;
+        private readonly IConfig _config;
 
         public BuildProvider(
             IHttpClientFactory httpClientFactory, 
             IBuildDtoConverter buildDtoConverter,
             ILatestBuildsFilter buildFilter,
-            ITestResultsProvider testResultsProvider)
+            ITestResultsProvider testResultsProvider,
+            IConfig config)
         {
             _httpClientFactory = httpClientFactory ?? throw new ArgumentNullException(nameof(httpClientFactory));
             _buildDtoConverter = buildDtoConverter ?? throw new ArgumentNullException(nameof(buildDtoConverter));
             _latestBuildsFilter = buildFilter ?? throw new ArgumentNullException(nameof(buildFilter));
             _testResultsProvider = testResultsProvider ?? throw new ArgumentNullException(nameof(testResultsProvider));
+            _config = config ?? throw new ArgumentNullException(nameof(config));
+
         }
 
         public Task<IReadOnlyCollection<Build>> GetBuildsAsync()
         {
-            return GetBuildsAsync(new[] {"parksq"}, DateTime.Now.AddDays(-30));
+            return GetBuildsAsync(_config.Projects, DateTime.Now.AddDays(-_config.MaxBuildAgeDays));
         }
 
         public Task<IReadOnlyCollection<Build>> GetBuildsAsync(int sinceHours)
         {
-            return GetBuildsAsync(new[] { "parksq" }, DateTime.Now.AddHours(-sinceHours));
+            return GetBuildsAsync(_config.Projects, DateTime.Now.AddHours(-sinceHours));
         }
 
         private async Task<IReadOnlyCollection<Build>> GetBuildsAsync(IEnumerable<string> projects, DateTime since)
@@ -46,7 +50,7 @@ namespace ParkSquare.BuildScreen.Web.Services.AzureDevOps
                 foreach (var project in projects)
                 {
                     var requestPath = GetRequestPath(project, since);
-                    var requestUri = new Uri(new Uri("https://dev.azure.com/parksq/"), requestPath);
+                    var requestUri = new Uri(_config.ApiBaseUrl, requestPath);
 
                     var response = await client.GetAsync(requestUri);
 

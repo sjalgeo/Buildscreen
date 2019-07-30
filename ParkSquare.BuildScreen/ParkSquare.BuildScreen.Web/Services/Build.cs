@@ -6,8 +6,6 @@ namespace ParkSquare.BuildScreen.Web.Services
     {
         public string Id { get; set; }
 
-        public string TeamProjectCollection { get; set; }
-
         public string TeamProject { get; set; }
 
         public string BuildDefinition { get; set; }

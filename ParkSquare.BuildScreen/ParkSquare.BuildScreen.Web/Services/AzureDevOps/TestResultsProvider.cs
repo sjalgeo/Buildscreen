@@ -11,10 +11,12 @@ namespace ParkSquare.BuildScreen.Web.Services.AzureDevOps
     public class TestResultsProvider : ITestResultsProvider
     {
         private readonly IHttpClientFactory _httpClientFactory;
+        private readonly IConfig _config;
 
-        public TestResultsProvider(IHttpClientFactory httpClientFactory)
+        public TestResultsProvider(IHttpClientFactory httpClientFactory, IConfig config)
         {
             _httpClientFactory = httpClientFactory ?? throw new ArgumentNullException(nameof(httpClientFactory));
+            _config = config ?? throw new ArgumentNullException(nameof(config));
         }
 
         public async Task<TestResults> GetTestsForBuildAsync(string project, string buildUri)
@@ -22,7 +24,7 @@ namespace ParkSquare.BuildScreen.Web.Services.AzureDevOps
             using (var client = _httpClientFactory.CreateClient())
             {
                 var requestPath = GetRequestPath(project, buildUri);
-                var requestUri = new Uri(new Uri("https://dev.azure.com/parksq/"), requestPath);
+                var requestUri = new Uri(_config.ApiBaseUrl, requestPath);
 
                 var response = await client.GetAsync(requestUri);
 
