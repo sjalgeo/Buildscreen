@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using ParkSquare.BuildScreen.Web.Services.Tfs.Dto;
@@ -10,11 +12,16 @@ namespace ParkSquare.BuildScreen.Web.Services.Tfs
     {
         private readonly IHttpClientFactory _httpClientFactory;
         private readonly IBuildDtoConverter _buildDtoConverter;
+        private readonly ILatestBuildsFilter _latestBuildsFilter;
 
-        public AzureDevOpsBuildProvider(IHttpClientFactory httpClientFactory, IBuildDtoConverter buildDtoConverter)
+        public AzureDevOpsBuildProvider(
+            IHttpClientFactory httpClientFactory, 
+            IBuildDtoConverter buildDtoConverter,
+            ILatestBuildsFilter buildFilter)
         {
             _httpClientFactory = httpClientFactory ?? throw new ArgumentNullException(nameof(httpClientFactory));
             _buildDtoConverter = buildDtoConverter ?? throw new ArgumentNullException(nameof(buildDtoConverter));
+            _latestBuildsFilter = buildFilter ?? throw new ArgumentNullException(nameof(buildFilter));
         }
 
         public Task<IReadOnlyCollection<Build>> GetBuildsAsync()
@@ -31,7 +38,7 @@ namespace ParkSquare.BuildScreen.Web.Services.Tfs
         {
             using (var client = _httpClientFactory.CreateClient())
             {
-                var validBuilds = new List<BuildDto>();
+                var dtos = new List<BuildDto>();
 
                 foreach (var path in projects)
                 {
@@ -42,28 +49,20 @@ namespace ParkSquare.BuildScreen.Web.Services.Tfs
 
                     if (response.IsSuccessStatusCode)
                     {
-                        var json = response.Content.ReadAsStringAsync().Result;
-                        var deserialized = JsonConvert.DeserializeObject<GetBuildsResponseDto>(json);
-
-                        validBuilds.AddRange(deserialized.Value);
-                    }
-                    else
-                    {
-                        var x = 1;
+                        var deserialized = await DeserializeResponseAsync(response);
+                        dtos.AddRange(deserialized.Value);
                     }
                 }
 
-                var converted = new List<Build>();
-
-                // Need to only return the latest one per build definition here
-
-                foreach (var build in validBuilds)
-                {
-                    converted.Add(_buildDtoConverter.Convert(build));
-                }
-
-                return converted;
+                var latestBuilds = _latestBuildsFilter.GetLatestBuilds(dtos);
+                return latestBuilds.Select(_buildDtoConverter.Convert).ToList();
             }
+        }
+
+        private static async Task<GetBuildsResponseDto> DeserializeResponseAsync(HttpResponseMessage response)
+        {
+            var deserialized = await response.Content.ReadAsStringAsync();
+            return JsonConvert.DeserializeObject<GetBuildsResponseDto>(deserialized);
         }
 
         private static string GetRequestPath(string project, DateTime buildSince)

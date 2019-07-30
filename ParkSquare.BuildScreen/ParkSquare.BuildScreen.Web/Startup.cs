@@ -29,6 +29,7 @@ namespace ParkSquare.BuildScreen.Web
 
             services.AddSingleton<IHttpClientFactory, HttpClientFactory>();
             services.AddSingleton<IBuildDtoConverter, BuildDtoConverter>();
+            services.AddSingleton<ILatestBuildsFilter, LatestBuildsFilter>();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
