@@ -558,6 +558,15 @@ body {
             border-top: 3px solid #2989D8;
         }
 
+.loader {
+    position:fixed;
+    width: 100%;
+    top:20%;
+    left: 0%;
+}
+
 .loadingtext {
+    font-size: 3vw;
+    text-align: center;
     color: white;
 }
