@@ -114,15 +114,6 @@
 
             $scope.retrieveBuildsFirstTime();
 
-            $scope.isStatusImportant = function (status) {
-                var importantStatuses = ["failed", "inProgress", "partiallySucceeded", "canceled", "stopped", "notStarted"];
-                if (importantStatuses.indexOf(status) >= 0) {
-                    return true;
-                } else {
-                    return false;
-                }
-            }
-
             $scope.$on("$destroy", function () {
                 $scope.poll = function () { };
                 $scope.retrieveBuildsFirstTime = function () { };
