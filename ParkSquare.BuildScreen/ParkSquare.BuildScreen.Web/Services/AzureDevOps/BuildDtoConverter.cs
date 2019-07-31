@@ -5,6 +5,12 @@ namespace ParkSquare.BuildScreen.Web.Services.AzureDevOps
 {
     public class BuildDtoConverter : IBuildDtoConverter
     {
+        private readonly IBranchNameConverter _branchNameConverter;
+
+        public BuildDtoConverter(IBranchNameConverter branchNameConverter)
+        {
+            _branchNameConverter = branchNameConverter ?? throw new ArgumentNullException(nameof(branchNameConverter));
+        }
         public Build Convert(BuildDto buildDto, TestResults testResults)
         {
             return new Build
@@ -24,9 +30,9 @@ namespace ParkSquare.BuildScreen.Web.Services.AzureDevOps
             };
         }
 
-        private static string ConvertBranchName(string branchName)
+        private string ConvertBranchName(string branchName)
         {
-            return branchName.Replace("refs/", string.Empty, StringComparison.InvariantCultureIgnoreCase);
+            return _branchNameConverter.Convert(branchName);
         }
     }
 }

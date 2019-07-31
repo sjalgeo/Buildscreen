@@ -32,6 +32,7 @@ namespace ParkSquare.BuildScreen.Web
             services.AddSingleton<ILatestBuildsFilter, LatestBuildsFilter>();
             services.AddSingleton<ITestResultsProvider, TestResultsProvider>();
             services.AddSingleton<IConfig, Config>();
+            services.AddSingleton<IBranchNameConverter, BranchNameConverter>();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
