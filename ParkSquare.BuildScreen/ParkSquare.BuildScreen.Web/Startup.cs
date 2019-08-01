@@ -25,8 +25,6 @@ namespace ParkSquare.BuildScreen.Web
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             services.AddSingleton<IBuildProvider, BuildProvider>();
-            services.AddSingleton<IViewAggregator, ViewAggregator>();
-
             services.AddSingleton<IHttpClientFactory, HttpClientFactory>();
             services.AddSingleton<IBuildDtoConverter, BuildDtoConverter>();
             services.AddSingleton<ILatestBuildsFilter, LatestBuildsFilter>();

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using ParkSquare.BuildScreen.Web.Models;
 using ParkSquare.BuildScreen.Web.Services;
@@ -11,25 +12,27 @@ namespace ParkSquare.BuildScreen.Web.Controllers
     [ApiController]
     public class BuildsController : ControllerBase
     {
-        private readonly IViewAggregator _viewAggregator;
+        private readonly IMapper _mapper;
+        private readonly IBuildProvider _buildProvider;
 
-        public BuildsController(IViewAggregator viewAggregator)
+        public BuildsController(IMapper mapper, IBuildProvider buildProvider)
         {
-            _viewAggregator = viewAggregator ?? throw new ArgumentNullException(nameof(viewAggregator));
+            _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
+            _buildProvider = buildProvider ?? throw new ArgumentNullException(nameof(buildProvider));
         }
 
         [HttpGet]
         public async Task<ActionResult<IReadOnlyCollection<BuildInfoDto>>> GetAsync()
         {
-            var builds = await _viewAggregator.GetViewAsync();
-            return Ok(builds);
+            var builds = await _buildProvider.GetBuildsAsync();
+            return Ok(_mapper.Map<IReadOnlyCollection<BuildInfoDto>>(builds));
         }
 
         [HttpGet("{sinceHoursAgo}")]
         public async Task<ActionResult<IReadOnlyCollection<BuildInfoDto>>> GetAsync(int sinceHoursAgo)
         {
-            var builds = await _viewAggregator.GetViewAsync(sinceHoursAgo);
-            return Ok(builds);
+            var builds = await _buildProvider.GetBuildsAsync(sinceHoursAgo);
+            return Ok(_mapper.Map<IReadOnlyCollection<BuildInfoDto>>(builds));
         }
     }
 }
