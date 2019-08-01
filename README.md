@@ -7,6 +7,9 @@ View the latest builds from your Azure DevOps and on-premise Team Foundation Ser
 
 This project is a modernized resurrection of the original open source project by (now defunct) Orbit One.
 
+We've streamlined the service layer to use the latest Azure DevOps REST APIs for best performance, improved the styling, fixed some
+bugs, and migrated the whole thing to .Net Core.
+
 Supported statuses
 ------------------
 
@@ -17,7 +20,7 @@ Supported statuses
 * Red: failed
 * Purple: stopped
 
-When a project fails to build successfully, a circle is displayed with additional information. Clicking on this circle will lead to a report of the concerning build. This allows for swift assessment of the problem without losing valuable time.
+Build tiles now have links to additional information within AzDO for swift assessment of the problem without losing valuable time.
 
 License
 -------
