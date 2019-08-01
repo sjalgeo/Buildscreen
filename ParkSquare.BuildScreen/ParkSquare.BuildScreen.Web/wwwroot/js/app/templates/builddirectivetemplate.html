@@ -19,11 +19,6 @@
                 {{build.branch | titleFilter:30}}
             </p>
         </div>
-        <div ng-if="build.Status === 'inProgress'">
-            <a href="{{build.buildReportUrl}}" target="_blank">
-                <div building-animation lastbuildtime="{{build.lastBuildTime}}" starttime="{{build.startBuildDateTime}}"></div>
-            </a>
-        </div>
         <div class="avatar">
             <img no-avatar ng-src="{{build.requestedByPictureUrl}}" alt="avatar"/>
         </div>
