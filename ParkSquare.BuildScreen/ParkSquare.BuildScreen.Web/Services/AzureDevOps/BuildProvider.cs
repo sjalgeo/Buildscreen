@@ -102,7 +102,7 @@ namespace ParkSquare.BuildScreen.Web.Services.AzureDevOps
         {
             // For API versions see:
             // https://docs.microsoft.com/en-us/rest/api/azure/devops/?view=azure-devops-server-rest-5.0#api-and-tfs-version-mapping
-            return $"?api-version=4.1&minTime={dateTime:yyyy-MM-ddTHH:mm:ss.000Z}&statusFilter=all&queryOrder=queueTimeAscending";
+            return $"?api-version=5.0&minTime={dateTime:yyyy-MM-ddTHH:mm:ss.000Z}&statusFilter=all&queryOrder=queueTimeAscending";
         }
     }
 }
