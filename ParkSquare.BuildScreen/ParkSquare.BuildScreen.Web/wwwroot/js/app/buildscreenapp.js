@@ -8,7 +8,7 @@ angular.module("BuildScreenApp", [
     .config(function ($routeProvider, $locationProvider) {
         $routeProvider
           .when('/', {
-              templateUrl: 'js/app/views/Buildscreen.html',
+              templateUrl: 'js/app/views/buildscreen.html',
               controller: 'buildscreencontroller'
             })
           .otherwise({
