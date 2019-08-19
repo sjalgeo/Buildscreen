@@ -22,6 +22,24 @@ Supported statuses
 
 Build tiles now have links to additional information within AzDO for swift assessment of the problem without losing valuable time.
 
+How to Use
+----------
+
+You can build the app and run it locally or deploy the binaries in your favourite manner (Kestrel, IIS, etc.)
+
+Or you can use the latest pre-built Docker image available on DockerHub.
+
+e.g. 
+
+        docker run --name buildscreen -p 80:80 
+        -e AzureDevOpsProvider:ServerUrl="https://yourazdo.visualstudio.com"
+        -e AzureDevOpsProvider:AuthToken="yourauthtoken"
+        -e AzureDevOpsProvider:ProjectCollection="projectcolletion"
+        -e AzureDevOpsProvider:Projects="comma,delimited,list" 
+        parksq/buildscreen:latest
+
+Replace the ServerUrl, AuthToken, ProjectCollection and Projects (comma delimited list if more than one) values with those appropriate for your setup.
+
 License
 -------
 ![alt tag](https://www.gnu.org/graphics/gplv3-88x31.png)
