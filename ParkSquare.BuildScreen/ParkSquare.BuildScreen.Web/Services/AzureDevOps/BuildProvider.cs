@@ -12,24 +12,22 @@ namespace ParkSquare.BuildScreen.Web.Services.AzureDevOps
     {
         private readonly IHttpClientFactory _httpClientFactory;
         private readonly IBuildDtoConverter _buildDtoConverter;
-        private readonly ILatestBuildsFilter _latestBuildsFilter;
+        private readonly List<IBuildFilter> _buildFilters;
         private readonly ITestResultsProvider _testResultsProvider;
         private readonly IConfig _config;
 
         public BuildProvider(
             IHttpClientFactory httpClientFactory, 
             IBuildDtoConverter buildDtoConverter,
-            ILatestBuildsFilter buildFilter,
+            IEnumerable<IBuildFilter> buildFilters,
             ITestResultsProvider testResultsProvider,
             IConfig config)
         {
+            _buildFilters = buildFilters == null ? new List<IBuildFilter>() : buildFilters.ToList();
             _httpClientFactory = httpClientFactory ?? throw new ArgumentNullException(nameof(httpClientFactory));
             _buildDtoConverter = buildDtoConverter ?? throw new ArgumentNullException(nameof(buildDtoConverter));
-            _latestBuildsFilter = buildFilter ?? throw new ArgumentNullException(nameof(buildFilter));
             _testResultsProvider = testResultsProvider ?? throw new ArgumentNullException(nameof(testResultsProvider));
-            _config = config ?? throw new ArgumentNullException(nameof(config));
-
-        }
+            _config = config ?? throw new ArgumentNullException(nameof(config));        }
 
         public Task<IReadOnlyCollection<Build>> GetBuildsAsync()
         {
@@ -61,7 +59,7 @@ namespace ParkSquare.BuildScreen.Web.Services.AzureDevOps
                     }
                 }
 
-                var latestBuilds = _latestBuildsFilter.GetLatestBuilds(dtos);
+                var latestBuilds = ApplyFilters(dtos).ToList();
 
                 var getTestTasks =
                     latestBuilds.Select(x =>
@@ -80,6 +78,18 @@ namespace ParkSquare.BuildScreen.Web.Services.AzureDevOps
 
                 return converted;
             }
+        }
+
+        private IEnumerable<BuildDto> ApplyFilters(IEnumerable<BuildDto> dtos)
+        {
+            var filtered = dtos;
+
+            foreach (var filter in _buildFilters)
+            {
+                filtered = filter.Filter(filtered);
+            }
+
+            return filtered;
         }
 
         private static async Task<GetBuildsResponseDto> DeserializeResponseAsync(HttpResponseMessage response)

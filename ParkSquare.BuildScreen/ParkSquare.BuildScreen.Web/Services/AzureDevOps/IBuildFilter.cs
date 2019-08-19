@@ -3,8 +3,8 @@ using ParkSquare.BuildScreen.Web.Services.AzureDevOps.Dto;
 
 namespace ParkSquare.BuildScreen.Web.Services.AzureDevOps
 {
-    public interface ILatestBuildsFilter
+    public interface IBuildFilter
     {
-        List<BuildDto> GetLatestBuilds(List<BuildDto> builds);
+        IEnumerable<BuildDto> Filter(IEnumerable<BuildDto> builds);
     }
 }

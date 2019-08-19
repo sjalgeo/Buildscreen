@@ -27,7 +27,8 @@ namespace ParkSquare.BuildScreen.Web
             services.AddSingleton<IBuildProvider, BuildProvider>();
             services.AddSingleton<IHttpClientFactory, HttpClientFactory>();
             services.AddSingleton<IBuildDtoConverter, BuildDtoConverter>();
-            services.AddSingleton<ILatestBuildsFilter, LatestBuildsFilter>();
+            services.AddSingleton<IBuildFilter, LatestBuildsFilter>();
+            services.AddSingleton<IBuildFilter, CompletedPullRequestFilter>();
             services.AddSingleton<ITestResultsProvider, TestResultsProvider>();
             services.AddSingleton<IConfig, Config>();
             services.AddSingleton<IBranchNameConverter, BranchNameConverter>();

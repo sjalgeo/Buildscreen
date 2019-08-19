@@ -5,17 +5,18 @@ using ParkSquare.BuildScreen.Web.Services.AzureDevOps.Dto;
 
 namespace ParkSquare.BuildScreen.Web.Services.AzureDevOps
 {
-    public class LatestBuildsFilter : ILatestBuildsFilter
+    public class LatestBuildsFilter : IBuildFilter
     {
-        public List<BuildDto> GetLatestBuilds(List<BuildDto> builds)
+        public IEnumerable<BuildDto> Filter(IEnumerable<BuildDto> builds)
         {
-            var definitions = builds.Select(GetBuildDefinitionKey).Distinct();
-            var filtered = new List<BuildDto>(builds.Where(IsQueued));
+            var list = builds.ToList();
+            var definitions = list.Select(GetBuildDefinitionKey).Distinct();
+            var filtered = new List<BuildDto>(list.Where(IsQueued));
 
             foreach (var definition in definitions)
             {
                 var latest =
-                    builds.Where(x => GetBuildDefinitionKey(x) == definition && !IsQueued(x))
+                    list.Where(x => GetBuildDefinitionKey(x) == definition && !IsQueued(x))
                         .OrderByDescending(x => x.FinishTime)
                         .FirstOrDefault();
 
