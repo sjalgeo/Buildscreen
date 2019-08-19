@@ -7,4 +7,4 @@ EXPOSE 443
 FROM base AS final
 WORKDIR /app
 COPY ParkSquare.BuildScreen/. /app
-ENTRYPOINT ["dotnet", "ParkSquare.BuildScreen.dll"]
+ENTRYPOINT ["dotnet", "ParkSquare.BuildScreen.Web.dll"]
