@@ -31,12 +31,12 @@ namespace ParkSquare.BuildScreen.Web.Services.AzureDevOps
 
         public Task<IReadOnlyCollection<Build>> GetBuildsAsync()
         {
-            return GetBuildsAsync(_config.Projects, DateTime.Now.AddDays(-_config.MaxBuildAgeDays));
+            return GetBuildsAsync(_config.TeamProjects, DateTime.Now.AddDays(-_config.MaxBuildAgeDays));
         }
 
         public Task<IReadOnlyCollection<Build>> GetBuildsAsync(int sinceHours)
         {
-            return GetBuildsAsync(_config.Projects, DateTime.Now.AddHours(-sinceHours));
+            return GetBuildsAsync(_config.TeamProjects, DateTime.Now.AddHours(-sinceHours));
         }
 
         private async Task<IReadOnlyCollection<Build>> GetBuildsAsync(IEnumerable<string> projects, DateTime since)

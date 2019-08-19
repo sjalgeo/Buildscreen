@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace ParkSquare.BuildScreen.Web.Services.AzureDevOps
 {
@@ -8,7 +9,7 @@ namespace ParkSquare.BuildScreen.Web.Services.AzureDevOps
 
         int TimeoutSeconds { get; set; }
 
-        string[] Projects { get; set; }
+        string Projects { get; set; }
 
         int MaxBuildAgeDays { get; set; }
 
@@ -17,5 +18,7 @@ namespace ParkSquare.BuildScreen.Web.Services.AzureDevOps
         string ProjectCollection { get; set; }
 
         Uri ApiBaseUrl { get; }
+
+        IReadOnlyCollection<string> TeamProjects { get; }
     }
 }

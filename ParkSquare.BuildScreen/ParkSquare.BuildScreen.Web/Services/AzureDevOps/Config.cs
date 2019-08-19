@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Microsoft.Extensions.Configuration;
 
 namespace ParkSquare.BuildScreen.Web.Services.AzureDevOps
@@ -11,13 +12,19 @@ namespace ParkSquare.BuildScreen.Web.Services.AzureDevOps
             configuration.Bind("AzureDevOpsProvider", this);
 
             ApiBaseUrl = GetApiBaseUrl();
+            TeamProjects = ParseProjects();
+        }
+
+        private string[] ParseProjects()
+        {
+            return Projects.Split(",");
         }
 
         public string AuthToken { get; set; }
 
         public int TimeoutSeconds { get; set; }
 
-        public string[] Projects { get; set; }
+        public string Projects { get; set; }
 
         public int MaxBuildAgeDays { get; set; }
 
@@ -26,6 +33,8 @@ namespace ParkSquare.BuildScreen.Web.Services.AzureDevOps
         public string ProjectCollection { get; set; }
 
         public Uri ApiBaseUrl { get; }
+
+        public IReadOnlyCollection<string> TeamProjects { get; }
 
         private Uri GetApiBaseUrl()
         {
