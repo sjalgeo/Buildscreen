@@ -27,7 +27,7 @@ How to Use
 
 You can build the app and run it locally or deploy the binaries in your favourite manner (Kestrel, IIS, etc.)
 
-Or you can use the latest pre-built Docker image available on DockerHub.
+Or you can use the latest pre-built Docker image available on DockerHub ![alt_tag](https://img.shields.io/docker/pulls/parksq/buildscreen?style=plastic)
 
 e.g. 
 
