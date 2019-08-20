@@ -24,15 +24,29 @@ namespace ParkSquare.BuildScreen.Web.Controllers
         [HttpGet]
         public async Task<ActionResult<IReadOnlyCollection<BuildInfoDto>>> GetAsync()
         {
-            var builds = await _buildProvider.GetBuildsAsync();
-            return Ok(_mapper.Map<IReadOnlyCollection<BuildInfoDto>>(builds));
+            try
+            {
+                var builds = await _buildProvider.GetBuildsAsync();
+                return Ok(_mapper.Map<IReadOnlyCollection<BuildInfoDto>>(builds));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
         }
 
         [HttpGet("{sinceHoursAgo}")]
         public async Task<ActionResult<IReadOnlyCollection<BuildInfoDto>>> GetAsync(int sinceHoursAgo)
         {
-            var builds = await _buildProvider.GetBuildsAsync(sinceHoursAgo);
-            return Ok(_mapper.Map<IReadOnlyCollection<BuildInfoDto>>(builds));
+            try
+            {
+                var builds = await _buildProvider.GetBuildsAsync(sinceHoursAgo);
+                return Ok(_mapper.Map<IReadOnlyCollection<BuildInfoDto>>(builds));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
         }
     }
 }

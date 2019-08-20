@@ -50,12 +50,19 @@ namespace ParkSquare.BuildScreen.Web.Services.AzureDevOps
                     var requestPath = GetRequestPath(project, since);
                     var requestUri = new Uri(_config.ApiBaseUrl, requestPath);
 
-                    var response = await client.GetAsync(requestUri);
-
-                    if (response.IsSuccessStatusCode)
+                    using (var response = await client.GetAsync(requestUri))
                     {
-                        var deserialized = await DeserializeResponseAsync(response);
-                        dtos.AddRange(deserialized.Value);
+                        if (response.IsSuccessStatusCode)
+                        {
+                            var deserialized = await DeserializeResponseAsync(response);
+                            dtos.AddRange(deserialized.Value);
+                        }
+                        else
+                        {
+                            throw new AzureDevOpsProviderException(
+                                "Unable to get latest builds. " +
+                                $"Call to '{requestUri}' returned {response.StatusCode}: {response.ReasonPhrase}");
+                        }
                     }
                 }
 
