@@ -26,16 +26,19 @@ namespace ParkSquare.BuildScreen.Web.Services.AzureDevOps
                 var requestPath = GetRequestPath(project, buildUri);
                 var requestUri = new Uri(_config.ApiBaseUrl, requestPath);
 
-                var response = await client.GetAsync(requestUri);
-
-                if (response.IsSuccessStatusCode)
+                using (var response = await client.GetAsync(requestUri))
                 {
-                    var deserialized = await DeserializeResponseAsync(response);
-                    return CalculateTestResults(deserialized.Value,  buildUri);
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var deserialized = await DeserializeResponseAsync(response);
+                        return CalculateTestResults(deserialized.Value, buildUri);
+                    }
+
+                    throw new AzureDevOpsProviderException(
+                        $"Unable to get test results for {project} build {buildUri}. " +
+                        $"Call to '{requestUri}' returned {response.StatusCode}: {response.ReasonPhrase}");
                 }
             }
-
-            return null;
         }
 
         private static async Task<GetTestRunsResponseDto> DeserializeResponseAsync(HttpResponseMessage response)
