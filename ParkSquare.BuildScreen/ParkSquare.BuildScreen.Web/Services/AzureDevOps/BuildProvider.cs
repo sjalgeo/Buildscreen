@@ -74,7 +74,7 @@ namespace ParkSquare.BuildScreen.Web.Services.AzureDevOps
 
                 await Task.WhenAll(getTestTasks);
 
-                var testResults = getTestTasks.Select(x => x.Result).ToList();
+                var testResults = getTestTasks.Select(x => x.Result).Where(y => y != null).ToList();
 
                 var converted = new List<Build>();
                 foreach (var buildDto in latestBuilds)
