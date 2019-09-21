@@ -27,5 +27,7 @@ namespace ParkSquare.BuildScreen.Web.Services
         public string RequestedByPictureUrl { get; set; }
 
         public string Branch { get; set; }
+
+        public string RepoName { get; set; }
     }
 }

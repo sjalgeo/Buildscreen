@@ -11,6 +11,7 @@ namespace ParkSquare.BuildScreen.Web.Services.AzureDevOps
         {
             _branchNameConverter = branchNameConverter ?? throw new ArgumentNullException(nameof(branchNameConverter));
         }
+
         public Build Convert(BuildDto buildDto, TestResults testResults)
         {
             return new Build
@@ -26,7 +27,8 @@ namespace ParkSquare.BuildScreen.Web.Services.AzureDevOps
                 StartBuildDateTime = buildDto.StartTime,
                 FinishBuildDateTime = buildDto.FinishTime,
                 RequestedByPictureUrl = string.Empty,
-                Branch = ConvertBranchName(buildDto.SourceBranch)
+                Branch = ConvertBranchName(buildDto.SourceBranch),
+                RepoName = buildDto.Repository.Name
             };
         }
 

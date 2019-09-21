@@ -29,5 +29,7 @@ namespace ParkSquare.BuildScreen.Web.Models
         public string BuildReportUrl { get; set; } 
 
         public string Branch { get; set; }
+
+        public string RepoName { get; set; }
     }
 }

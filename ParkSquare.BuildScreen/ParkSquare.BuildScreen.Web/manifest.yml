@@ -1,0 +1,12 @@
+﻿image: parksq/buildscreen
+manifests:
+  -
+    image: parksq/buildscreen:1.0.199-armhf
+    platform:
+      architecture: arm
+      os: linux
+  -
+    image: parksq/buildscreen:1.0.199-x64
+    platform:
+      architecture: amd64
+      os: linux
