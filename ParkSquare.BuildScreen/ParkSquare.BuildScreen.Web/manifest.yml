@@ -1,12 +1,12 @@
 ﻿image: parksq/#{ImageName}#
 manifests:
   -
-    image: parksq/#{ImageName}#1.0.#{Build.BuildId}#-armhf
+    image: parksq/#{ImageName}:#1.0.#{Build.BuildId}#-armhf
     platform:
       architecture: arm
       os: linux
   -
-    image: parksq/#{ImageName}#1.0.#{Build.BuildId}#-x64
+    image: parksq/#{ImageName}:#1.0.#{Build.BuildId}#-x64
     platform:
       architecture: amd64
       os: linux
