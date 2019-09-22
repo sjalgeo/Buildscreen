@@ -8,6 +8,8 @@
     box-sizing: border-box;
 }
 
+    * a { text-decoration: none; }
+
 /* inherit height from window */
 html, body {
     margin: 0;

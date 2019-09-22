@@ -2,7 +2,9 @@
     <div ng-if="build.totalNumberOfTests > 0" class="ribbon"><span>{{build.passedNumberOfTests}}/{{build.totalNumberOfTests}}</span></div>
     <span id="dateFilter" data-date="{{build.startBuildDateTime}}" /> <!--This is because of Isotope/Angular compatibility problem-->
     <div class="aspect-content">
-        <p class="item-title" title="{{build.buildDefinition}}">{{build.buildDefinition | titleFilter:18}}</p>
+        <a href="{{build.buildReportUrl}}" target="_blank">
+            <p class="item-title" title="{{build.buildDefinition}}">{{build.buildDefinition | titleFilter:18}}</p>
+        </a>
         <p class="item-subtitle" title="{{build.repoName}}">{{build.repoName | titleFilter:25}}</p>
         <div class="itemcontent">
             <p ng-if="build.status !== 'inProgress' && build.status !== 'notStarted'">
