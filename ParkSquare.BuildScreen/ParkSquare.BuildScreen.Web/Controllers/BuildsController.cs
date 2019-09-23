@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using ParkSquare.BuildScreen.Web.Models;
 using ParkSquare.BuildScreen.Web.Services;
 
@@ -14,11 +15,13 @@ namespace ParkSquare.BuildScreen.Web.Controllers
     {
         private readonly IMapper _mapper;
         private readonly IBuildProvider _buildProvider;
+        private readonly ILogger<BuildsController> _logger;
 
-        public BuildsController(IMapper mapper, IBuildProvider buildProvider)
+        public BuildsController(IMapper mapper, IBuildProvider buildProvider, ILogger<BuildsController> logger)
         {
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
             _buildProvider = buildProvider ?? throw new ArgumentNullException(nameof(buildProvider));
+            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
         [HttpGet]
@@ -31,6 +34,7 @@ namespace ParkSquare.BuildScreen.Web.Controllers
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, "Error in BuildsController");
                 return StatusCode(500, ex.Message);
             }
         }
@@ -45,6 +49,7 @@ namespace ParkSquare.BuildScreen.Web.Controllers
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, "Error in BuildsController");
                 return StatusCode(500, ex.Message);
             }
         }

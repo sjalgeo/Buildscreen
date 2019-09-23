@@ -7,6 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using ParkSquare.BuildScreen.Web.Services;
 using ParkSquare.BuildScreen.Web.Services.AzureDevOps;
+using Serilog;
 
 namespace ParkSquare.BuildScreen.Web
 {
@@ -37,6 +38,7 @@ namespace ParkSquare.BuildScreen.Web
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            app.UseSerilogRequestLogging(); // replaces noisy built-in version
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 

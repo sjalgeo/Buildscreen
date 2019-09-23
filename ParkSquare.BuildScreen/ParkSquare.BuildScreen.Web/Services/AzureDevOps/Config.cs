@@ -16,11 +16,6 @@ namespace ParkSquare.BuildScreen.Web.Services.AzureDevOps
             HiddenWords = ParseMultiString(RemoveWords);
         }
 
-        private static string[] ParseMultiString(string value)
-        {
-            return value.Split(",");
-        }
-
         public string AuthToken { get; set; }
 
         public int TimeoutSeconds { get; set; }
@@ -45,6 +40,11 @@ namespace ParkSquare.BuildScreen.Web.Services.AzureDevOps
         {
             var separator = ServerUrl.EndsWith('/') ? string.Empty : "/";
             return new Uri($"{ServerUrl}{separator}{ProjectCollection}/");
+        }
+
+        private static string[] ParseMultiString(string value)
+        {
+            return value.Split(",");
         }
     }
 }

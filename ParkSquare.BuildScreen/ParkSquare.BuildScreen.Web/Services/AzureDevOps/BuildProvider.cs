@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using ParkSquare.BuildScreen.Web.Services.AzureDevOps.Dto;
 
@@ -15,19 +16,23 @@ namespace ParkSquare.BuildScreen.Web.Services.AzureDevOps
         private readonly List<IBuildFilter> _buildFilters;
         private readonly ITestResultsProvider _testResultsProvider;
         private readonly IConfig _config;
+        private readonly ILogger<IBuildProvider> _logger;
 
         public BuildProvider(
             IHttpClientFactory httpClientFactory, 
             IBuildDtoConverter buildDtoConverter,
             IEnumerable<IBuildFilter> buildFilters,
             ITestResultsProvider testResultsProvider,
-            IConfig config)
+            IConfig config,
+            ILogger<IBuildProvider> logger)
         {
             _buildFilters = buildFilters == null ? new List<IBuildFilter>() : buildFilters.ToList();
             _httpClientFactory = httpClientFactory ?? throw new ArgumentNullException(nameof(httpClientFactory));
             _buildDtoConverter = buildDtoConverter ?? throw new ArgumentNullException(nameof(buildDtoConverter));
             _testResultsProvider = testResultsProvider ?? throw new ArgumentNullException(nameof(testResultsProvider));
-            _config = config ?? throw new ArgumentNullException(nameof(config));        }
+            _config = config ?? throw new ArgumentNullException(nameof(config));
+            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+        }
 
         public Task<IReadOnlyCollection<Build>> GetBuildsAsync()
         {
@@ -50,19 +55,28 @@ namespace ParkSquare.BuildScreen.Web.Services.AzureDevOps
                     var requestPath = GetRequestPath(project, since);
                     var requestUri = new Uri(_config.ApiBaseUrl, requestPath);
 
-                    using (var response = await client.GetAsync(requestUri))
+                    try
                     {
-                        if (response.IsSuccessStatusCode)
+                        using (var response = await client.GetAsync(requestUri))
                         {
-                            var deserialized = await DeserializeResponseAsync(response);
-                            dtos.AddRange(deserialized.Value);
+                            if (response.IsSuccessStatusCode)
+                            {
+                                var deserialized = await DeserializeResponseAsync(response);
+                                dtos.AddRange(deserialized.Value);
+                            }
+                            else
+                            {
+                                _logger.LogError($"Azure Dev Ops API returned {response.StatusCode} {response.ReasonPhrase}");
+
+                                throw new AzureDevOpsProviderException(
+                                    "Unable to get latest builds. " +
+                                    $"Call to '{requestUri}' returned {response.StatusCode}: {response.ReasonPhrase}");
+                            }
                         }
-                        else
-                        {
-                            throw new AzureDevOpsProviderException(
-                                "Unable to get latest builds. " +
-                                $"Call to '{requestUri}' returned {response.StatusCode}: {response.ReasonPhrase}");
-                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        _logger.LogError(ex, $"Error getting {project} builds from Azure Dev Ops API");
                     }
                 }
 
