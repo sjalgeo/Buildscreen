@@ -46,59 +46,57 @@ namespace ParkSquare.BuildScreen.Web.Services.AzureDevOps
 
         private async Task<IReadOnlyCollection<Build>> GetBuildsAsync(IEnumerable<string> projects, DateTime since)
         {
-            using (var client = _httpClientFactory.CreateClient())
+            var client = _httpClientFactory.CreateClient();
+            var dtos = new List<BuildDto>();
+
+            foreach (var project in projects)
             {
-                var dtos = new List<BuildDto>();
+                var requestPath = GetRequestPath(project, since);
+                var requestUri = new Uri(_config.ApiBaseUrl, requestPath);
 
-                foreach (var project in projects)
+                try
                 {
-                    var requestPath = GetRequestPath(project, since);
-                    var requestUri = new Uri(_config.ApiBaseUrl, requestPath);
-
-                    try
+                    using (var response = await client.GetAsync(requestUri))
                     {
-                        using (var response = await client.GetAsync(requestUri))
+                        if (response.IsSuccessStatusCode)
                         {
-                            if (response.IsSuccessStatusCode)
-                            {
-                                var deserialized = await DeserializeResponseAsync(response);
-                                dtos.AddRange(deserialized.Value);
-                            }
-                            else
-                            {
-                                _logger.LogError($"Azure Dev Ops API returned {response.StatusCode} {response.ReasonPhrase}");
+                            var deserialized = await DeserializeResponseAsync(response);
+                            dtos.AddRange(deserialized.Value);
+                        }
+                        else
+                        {
+                            _logger.LogError($"Azure Dev Ops API returned {response.StatusCode} {response.ReasonPhrase}");
 
-                                throw new AzureDevOpsProviderException(
-                                    "Unable to get latest builds. " +
-                                    $"Call to '{requestUri}' returned {response.StatusCode}: {response.ReasonPhrase}");
-                            }
+                            throw new AzureDevOpsProviderException(
+                                "Unable to get latest builds. " +
+                                $"Call to '{requestUri}' returned {response.StatusCode}: {response.ReasonPhrase}");
                         }
                     }
-                    catch (Exception ex)
-                    {
-                        _logger.LogError(ex, $"Error getting {project} builds from Azure Dev Ops API");
-                    }
                 }
-
-                var latestBuilds = ApplyFilters(dtos).ToList();
-
-                var getTestTasks =
-                    latestBuilds.Select(x =>
-                        _testResultsProvider.GetTestsForBuildAsync(x.Project.Name, x.Uri)).ToList();
-
-                await Task.WhenAll(getTestTasks);
-
-                var testResults = getTestTasks.Select(x => x.Result).Where(y => y != null).ToList();
-
-                var converted = new List<Build>();
-                foreach (var buildDto in latestBuilds)
+                catch (Exception ex)
                 {
-                    var testsForBuild = testResults.FirstOrDefault(x => x.BuildUri.Equals(buildDto.Uri));
-                    converted.Add(_buildDtoConverter.Convert(buildDto, testsForBuild));
+                    _logger.LogError(ex, $"Error getting {project} builds from Azure Dev Ops API");
                 }
-
-                return converted;
             }
+
+            var latestBuilds = ApplyFilters(dtos).ToList();
+
+            var getTestTasks =
+                latestBuilds.Select(x =>
+                    _testResultsProvider.GetTestsForBuildAsync(x.Project.Name, x.Uri)).ToList();
+
+            await Task.WhenAll(getTestTasks);
+
+            var testResults = getTestTasks.Select(x => x.Result).Where(y => y != null).ToList();
+
+            var converted = new List<Build>();
+            foreach (var buildDto in latestBuilds)
+            {
+                var testsForBuild = testResults.FirstOrDefault(x => x.BuildUri.Equals(buildDto.Uri));
+                converted.Add(_buildDtoConverter.Convert(buildDto, testsForBuild));
+            }
+
+            return converted;
         }
 
         private IEnumerable<BuildDto> ApplyFilters(IEnumerable<BuildDto> dtos)

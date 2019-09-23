@@ -9,14 +9,19 @@ namespace ParkSquare.BuildScreen.Web.Services
 {
     public class HttpClientFactory : IHttpClientFactory
     {
-        private readonly IConfig _config;
+        private readonly HttpClient _httpClient;
 
         public HttpClientFactory(IConfig config)
         {
-            _config = config;
+            _httpClient = CreateInstance(config);
         }
 
         public HttpClient CreateClient()
+        {
+            return _httpClient;
+        }
+
+        private static HttpClient CreateInstance(IConfig config)
         {
             var client = new HttpClient(new HttpClientHandler
             {
@@ -26,11 +31,11 @@ namespace ParkSquare.BuildScreen.Web.Services
             client.DefaultRequestHeaders.Accept.Clear();
 
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic",
-                Convert.ToBase64String(Encoding.ASCII.GetBytes($":{_config.AuthToken}")));
+                Convert.ToBase64String(Encoding.ASCII.GetBytes($":{config.AuthToken}")));
 
             client.DefaultRequestHeaders.AcceptEncoding.Add(new StringWithQualityHeaderValue("gzip"));
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            client.Timeout = TimeSpan.FromSeconds(_config.TimeoutSeconds);
+            client.Timeout = TimeSpan.FromSeconds(config.TimeoutSeconds);
 
             return client;
         }

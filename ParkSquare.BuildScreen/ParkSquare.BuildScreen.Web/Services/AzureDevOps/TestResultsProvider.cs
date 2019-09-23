@@ -21,23 +21,21 @@ namespace ParkSquare.BuildScreen.Web.Services.AzureDevOps
 
         public async Task<TestResults> GetTestsForBuildAsync(string project, string buildUri)
         {
-            using (var client = _httpClientFactory.CreateClient())
+            var client = _httpClientFactory.CreateClient();
+            var requestPath = GetRequestPath(project, buildUri);
+            var requestUri = new Uri(_config.ApiBaseUrl, requestPath);
+
+            using (var response = await client.GetAsync(requestUri))
             {
-                var requestPath = GetRequestPath(project, buildUri);
-                var requestUri = new Uri(_config.ApiBaseUrl, requestPath);
-
-                using (var response = await client.GetAsync(requestUri))
+                if (response.IsSuccessStatusCode)
                 {
-                    if (response.IsSuccessStatusCode)
-                    {
-                        var deserialized = await DeserializeResponseAsync(response);
-                        return CalculateTestResults(deserialized.Value, buildUri);
-                    }
-
-                    throw new AzureDevOpsProviderException(
-                        $"Unable to get test results for {project} build {buildUri}. " +
-                        $"Call to '{requestUri}' returned {response.StatusCode}: {response.ReasonPhrase}");
+                    var deserialized = await DeserializeResponseAsync(response);
+                    return CalculateTestResults(deserialized.Value, buildUri);
                 }
+
+                throw new AzureDevOpsProviderException(
+                    $"Unable to get test results for {project} build {buildUri}. " +
+                    $"Call to '{requestUri}' returned {response.StatusCode}: {response.ReasonPhrase}");
             }
         }
 
