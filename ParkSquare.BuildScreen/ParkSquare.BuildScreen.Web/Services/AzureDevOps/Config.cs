@@ -12,12 +12,13 @@ namespace ParkSquare.BuildScreen.Web.Services.AzureDevOps
             configuration.Bind("AzureDevOpsProvider", this);
 
             ApiBaseUrl = GetApiBaseUrl();
-            TeamProjects = ParseProjects();
+            TeamProjects = ParseMultiString(Projects);
+            HiddenWords = ParseMultiString(RemoveWords);
         }
 
-        private string[] ParseProjects()
+        private static string[] ParseMultiString(string value)
         {
-            return Projects.Split(",");
+            return value.Split(",");
         }
 
         public string AuthToken { get; set; }
@@ -34,7 +35,11 @@ namespace ParkSquare.BuildScreen.Web.Services.AzureDevOps
 
         public Uri ApiBaseUrl { get; }
 
+        public string RemoveWords { get; set; }
+
         public IReadOnlyCollection<string> TeamProjects { get; }
+
+        public IReadOnlyCollection<string> HiddenWords { get; }
 
         private Uri GetApiBaseUrl()
         {

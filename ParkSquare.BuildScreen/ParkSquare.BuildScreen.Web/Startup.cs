@@ -32,6 +32,7 @@ namespace ParkSquare.BuildScreen.Web
             services.AddSingleton<ITestResultsProvider, TestResultsProvider>();
             services.AddSingleton<IConfig, Config>();
             services.AddSingleton<IBranchNameConverter, BranchNameConverter>();
+            services.AddSingleton<IDisplayTransformer, DisplayTransformer>();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)

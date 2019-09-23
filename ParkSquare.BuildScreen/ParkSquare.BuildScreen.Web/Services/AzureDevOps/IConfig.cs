@@ -19,6 +19,10 @@ namespace ParkSquare.BuildScreen.Web.Services.AzureDevOps
 
         Uri ApiBaseUrl { get; }
 
+        string RemoveWords { get; set; }
+        
         IReadOnlyCollection<string> TeamProjects { get; }
+
+        IReadOnlyCollection<string> HiddenWords { get; }
     }
 }

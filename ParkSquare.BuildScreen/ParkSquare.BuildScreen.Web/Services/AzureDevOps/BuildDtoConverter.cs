@@ -6,10 +6,12 @@ namespace ParkSquare.BuildScreen.Web.Services.AzureDevOps
     public class BuildDtoConverter : IBuildDtoConverter
     {
         private readonly IBranchNameConverter _branchNameConverter;
+        private readonly IDisplayTransformer _displayTransformer;
 
-        public BuildDtoConverter(IBranchNameConverter branchNameConverter)
+        public BuildDtoConverter(IBranchNameConverter branchNameConverter, IDisplayTransformer displayTransformer)
         {
             _branchNameConverter = branchNameConverter ?? throw new ArgumentNullException(nameof(branchNameConverter));
+            _displayTransformer = displayTransformer ?? throw new ArgumentNullException(nameof(displayTransformer));
         }
 
         public Build Convert(BuildDto buildDto, TestResults testResults)
@@ -22,13 +24,13 @@ namespace ParkSquare.BuildScreen.Web.Services.AzureDevOps
                 Status = string.IsNullOrEmpty(buildDto.Result) ? buildDto.Status : buildDto.Result,
                 TotalNumberOfTests = testResults?.TotalTests ?? 0,
                 PassedNumberOfTests = testResults?.PassedTests ?? 0,
-                TeamProject = buildDto.Project.Name,
-                BuildDefinition = buildDto.Definition.Name,
+                TeamProject = _displayTransformer.Tranform(buildDto.Project.Name),
+                BuildDefinition = _displayTransformer.Tranform(buildDto.Definition.Name),
                 StartBuildDateTime = buildDto.StartTime,
                 FinishBuildDateTime = buildDto.FinishTime,
                 RequestedByPictureUrl = string.Empty,
                 Branch = ConvertBranchName(buildDto.SourceBranch),
-                RepoName = buildDto.Repository.Name
+                RepoName = _displayTransformer.Tranform(buildDto.Repository.Name)
             };
         }
 
